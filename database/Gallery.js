@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
+// const db = require('./index.js');
 
 
-const gallarySchema = new mongoose.Schema({
+const gallerySchema = new mongoose.Schema({
   user_id: Number,
   room_id: Number,
   title: String,
@@ -16,6 +17,6 @@ const gallarySchema = new mongoose.Schema({
   room_photos: [{ imageUrl: String, description: String }],
 });
 
-const Gallary = mongoose.model('gallary', gallarySchema);
+const Gallery = mongoose.model('Gallery', gallerySchema);
 
-module.exports = Gallary;
+module.exports = Gallery;

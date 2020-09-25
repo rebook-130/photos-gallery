@@ -1,5 +1,5 @@
 const db = require('./index.js');
-const Gallary = require('./Gallery.js');
+const Gallery = require('./Gallery.js');
 const faker = require('faker');
 
 const title = [
@@ -12,11 +12,11 @@ const getRandomTitle = () => {
   const min = 0;
   const randomIndex = Math.floor(Math.random() * (max - min + 1)) + min;
   return title[randomIndex];
-}
+};
 
 const address = [
   'Payangan, Bali, Indonesia',
-  'San Francisco, California, United States'
+  'San Francisco, California, United States',
   'Aewol-eup, Jeju-si, Jeju Province, South Korea'
 ];
 
@@ -25,14 +25,14 @@ const getRandomAddress = () => {
   const min = 0;
   const randomIndex = Math.floor(Math.random() * (max - min + 1)) + min;
   return address[randomIndex];
-}
+};
 
 
 const getNumberOfReviews = () => {
   const max = 2000;
   const min = 100;
   return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+};
 
 const photos = [
   'https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_000_Big.jpg',
@@ -78,27 +78,34 @@ const photos = [
   'https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_039_sf.jpg',
   'https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_040_sf.jpg'
 
-]
+];
 
-const getRandomImgUrl = () => {
-  const max = photo.length - 1;
+const getRandomImgUrlnDescription = () => {
+  const max = photos.length - 1;
   const min = 0;
   const randomIndex = Math.floor(Math.random() * (max - min + 1)) + min;
-  return photos[randomIndex];
-}
+  const numberOfWords = Math.floor(Math.random() * (6 - 0) + 0);
+  return { imageUrl: photos[randomIndex], description: faker.lorem.words(numberOfWords) };
+};
 
-const getRandomImgListUrl = () => {
+const getRandomImgUrlnDescriptionList = () => {
   const imageUrlList = [];
   const max = 10;
   const min = 5;
-  const numberOfPhotos = Math.floor(Math.random() * (max - min + 1) + min)
+  const numberOfPhotos = Math.floor(Math.random() * (max - min + 1) + min);
 
-  for (let  i = 0; i < numberOfPhotos; i++) {
-    const randomImgUrl = getRandomImgUrl();
-    imageUrlList.push(randomPhotoUrl);
+  for (let i = 0; i < numberOfPhotos; i++) {
+    const randomImgUrlnDescription = getRandomImgUrlnDescription();
+    imageUrlList.push(randomImgUrlnDescription);
   }
   return imageUrlList;
-}
+};
+
+const getSavednName = () => {
+  const randomBoolean = faker.random.boolean();
+  const savedName = randomBoolean === true ? faker.address.city() : '';
+  return { isSaved: randomBoolean, name: savedName };
+};
 
 
 const makePhotoGallerysData = (num) => {
@@ -107,33 +114,34 @@ const makePhotoGallerysData = (num) => {
 
   for (let i = 0; i < numOfPhotoGallerys; i++) {
     const photogallery = {
-      user_id: i,
-      room_id: i,
+      user_id: i + 1,
+      room_id: i + 1,
       title: getRandomTitle(),
-      ratings: (Math.random() * (5 - 1) + 1).toFixed(2),
+      ratings: (Math.random() * (5 - 1) + 1).toFixed(1),
       number_of_reviews: getNumberOfReviews(),
-      isSuperhost: faker.random.boolean,
+      // isSuperhost: faker.random.boolean,
       address: getRandomAddress(),
-      save_status: { isSaved: false, name: '' }
-      room_photos: getRandomImgListUrl(),
-    }
+      save_status: getSavednName(),
+      room_photos: getRandomImgUrlnDescriptionList(),
+    };
     photoGallerys.push(photogallery);
   }
   return photoGallerys;
-}
+};
 
 // create 5 photogallerys
 const photogallerys = makePhotoGallerysData(5);
 
-console.log(photogallerys[0])
+console.log(photogallerys[0]);
 
 
 const insertSamplePhotoGallerys = () => {
-  Gallary.create(photogallerys)
+  Gallery.create(photogallerys)
     .then(() => console.log('insert gallery data into db'))
-    .catch(err =>  console.log('Fail to insert gallery data into db', err))
-    .finally(() => process.exit());
-}
+    .then(() => db.close())
+    .catch(err => console.log('Fail to insert gallery data into db', err));
+};
+
 
 
 insertSamplePhotoGallerys();
