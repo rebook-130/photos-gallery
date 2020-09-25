@@ -1,11 +1,12 @@
 const express = require('express');
+
 const app = express();
 const path = require('path');
+const bodyParser = require('body-parser');
+
 const port = 3001;
 const db = require('../database/index.js'); // connect db to server
 const Gallery = require('../database/Gallery.js');
-const bodyParser = require('body-parser');
-
 
 app.use('/', express.static(path.join(__dirname, '../public')));
 app.use(bodyParser.json());
@@ -20,11 +21,11 @@ app.get('/api/photogallery/:roomId', (req, res) => {
   const { roomId } = req.params;
 
   Gallery.find({'room_id': roomId })
-    .then(response => {
+    .then((response) => {
       console.log('SERVER GET GALLERY SUCCESS', response);
       res.status(200).send(response);
     })
-    .catch(err => {
+    .catch((err) => {
       console.log('SERVER GET GALLERY ERROR', err);
       res.status(400).send();
     });

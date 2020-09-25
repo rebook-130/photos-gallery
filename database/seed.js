@@ -1,6 +1,6 @@
+const faker = require('faker');
 const db = require('./index.js');
 const Gallery = require('./Gallery.js');
-const faker = require('faker');
 
 const title = [
   'Secluded Getaway Staycation+SunsetPool@megananda',
@@ -26,7 +26,6 @@ const getRandomAddress = () => {
   const randomIndex = Math.floor(Math.random() * (max - min + 1)) + min;
   return address[randomIndex];
 };
-
 
 const getNumberOfReviews = () => {
   const max = 2000;
@@ -107,7 +106,6 @@ const getSavednName = () => {
   return { isSaved: randomBoolean, name: savedName };
 };
 
-
 const makePhotoGallerysData = (num) => {
   const numOfPhotoGallerys = num || 1;
   const photoGallerys = [];
@@ -134,15 +132,11 @@ const photogallerys = makePhotoGallerysData(5);
 
 console.log(photogallerys[0]);
 
-
 const insertSamplePhotoGallerys = () => {
   Gallery.create(photogallerys)
     .then(() => console.log('insert gallery data into db'))
     .then(() => db.close())
-    .catch(err => console.log('Fail to insert gallery data into db', err));
+    .catch((err) => console.log('Fail to insert gallery data into db', err));
 };
 
-
-
 insertSamplePhotoGallerys();
-
