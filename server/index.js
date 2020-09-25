@@ -20,7 +20,7 @@ app.get('/api/photogallery/:roomId', (req, res) => {
   // console.log('req.params', req.params.roomId);
   const { roomId } = req.params;
 
-  Gallery.find({'room_id': roomId })
+  Gallery.find({ 'room_id': roomId })
     .then((response) => {
       console.log('SERVER GET GALLERY SUCCESS', response);
       res.status(200).send(response);
