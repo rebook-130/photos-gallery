@@ -12,18 +12,18 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx$/,
-        loaders: 'babel-loader',
-        options: {
-          presets: ['@babel/preset-env', '@babel/preset-react']
-        }
-      },
-      {
-        test: /\.(jpg|png|svg)$/,
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
         use: {
-          loader: 'url-loader',
-        },
-      },
-    ],
+          loaders: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env', '@babel/preset-react']
+          }
+        }
+      }
+    ]
   },
+  resolve: {
+    extensions: [".js", ".json", ".jsx", ".css"]
+  }
 };
