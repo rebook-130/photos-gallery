@@ -1,20 +1,18 @@
 import React from 'react';
-// import PhotoGallery from './PhotoGallery.jsx';
+import PhotoGalleryItem from './PhotoGalleryItem.jsx';
 
-class PhotoGallery extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-    };
-  }
-
-  render() {
-    return (
-      <div>
-        <h1> This is photo gallery sub section</h1>
-      </div>
-    );
-  }
+function PhotoGallery(props) {
+  return (
+    <div>
+      {/* {console.log('props in photogallery', props.items)} */}
+      {props.items.map(item => <PhotoGalleryItem item={item}/>)}
+      {/* <div>{props.items[0].room_photos}</div> */}
+      {/* <div>{props.items[0].room_photos[0]}</div>
+      <div>{props.items[0].room_photos[1]}</div>
+      <div>{props.items[0].room_photos[2]}</div>
+      <div>{props.items[0].room_photos[3]}</div> */}
+    </div>
+  )
 }
 
 export default PhotoGallery;

@@ -11,7 +11,7 @@ const getRandomTitle = () => {
   const max = title.length - 1;
   const min = 0;
   const randomIndex = Math.floor(Math.random() * (max - min + 1)) + min;
-  return title[randomIndex];
+  return title[0];
 };
 
 const address = [
@@ -24,7 +24,7 @@ const getRandomAddress = () => {
   const max = address.length - 1;
   const min = 0;
   const randomIndex = Math.floor(Math.random() * (max - min + 1)) + min;
-  return address[randomIndex];
+  return address[0];
 };
 
 const getNumberOfReviews = () => {
@@ -33,8 +33,12 @@ const getNumberOfReviews = () => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
+// 'https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_000_Big.jpg',
+// 'https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_031_big.jpg',
+// 'https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_036_sf.jpg',
+
 const photos = [
-  'https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_000_Big.jpg',
+
   'https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_001.jpg',
   'https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_002.jpg',
   'https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_003.jpg',
@@ -45,33 +49,14 @@ const photos = [
   'https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_008.jpg',
   'https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_009.jpg',
   'https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_010.jpg',
-  'https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_011.jpg',
-  'https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_012.jpg',
   'https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_013.jpg',
-  'https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_014.jpg',
-  'https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_015.jpg',
-  'https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_016.jpg',
-  'https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_017.jpg',
   'https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_018.jpg',
-  'https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_019.jpg',
-  'https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_020.jpg',
-  'https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_021.jpg',
   'https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_022.jpg',
-  'https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_023.jpg',
-  'https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_024.jpg',
-  'https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_025.jpg',
-  'https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_026.jpg',
-  'https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_027.jpg',
-  'https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_028.jpg',
-  'https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_029.jpg',
-  'https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_030.jpg',
   'https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_031.jpg',
-  'https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_031_big.jpg',
   'https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_032.jpg',
   'https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_033.jpg',
   'https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_034.jpg',
   'https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_035.jpg',
-  'https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_036_sf.jpg',
   'https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_037_sf.jpg',
   'https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_038_sf.jpg',
   'https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_039_sf.jpg',
@@ -79,23 +64,32 @@ const photos = [
 
 ];
 
-const getRandomImgUrlnDescription = () => {
-  const max = photos.length - 1;
-  const min = 0;
-  const randomIndex = Math.floor(Math.random() * (max - min + 1)) + min;
-  const numberOfWords = Math.floor(Math.random() * (6 - 0) + 0);
-  return { imageUrl: photos[randomIndex], description: faker.lorem.words(numberOfWords) };
-};
+// const getImgUrlnDescription = () => {
+//   // const randomIndex = Math.floor(Math.random() * (max - min + 1)) + min;
+//   const numberOfWords = Math.floor(Math.random() * (6 - 0) + 0);
+//   for (let i = 0; i < photos.length; i++) {
+//     return { imageUrl: photos[i], description: faker.lorem.words(numberOfWords) };
+//   }
+// };
 
-const getRandomImgUrlnDescriptionList = () => {
+// const getImgUrlnDescriptionList = () => {
+//   const imageUrlList = [];
+//   const numberOfPhotos = 5;
+
+//   for (let i = 0; i < numberOfPhotos; i++) {
+//     const randomImgUrlnDescription = getImgUrlnDescription();
+//     imageUrlList.push(randomImgUrlnDescription);
+//   }
+//   return imageUrlList;
+// };
+
+const getImgUrlnDescriptionList = () => {
   const imageUrlList = [];
-  const max = 10;
-  const min = 5;
-  const numberOfPhotos = Math.floor(Math.random() * (max - min + 1) + min);
+  const numberOfPhotos = 5;
+  const numberOfWords = Math.floor(Math.random() * (6 - 0) + 0);
 
   for (let i = 0; i < numberOfPhotos; i++) {
-    const randomImgUrlnDescription = getRandomImgUrlnDescription();
-    imageUrlList.push(randomImgUrlnDescription);
+    imageUrlList.push({ imageUrl: photos[i], description: faker.lorem.words(numberOfWords) });
   }
   return imageUrlList;
 };
@@ -115,12 +109,12 @@ const makePhotoGallerysData = (num) => {
       user_id: i + 1,
       room_id: i + 1,
       title: getRandomTitle(),
-      ratings: (Math.random() * (5 - 1) + 1).toFixed(1),
+      ratings: (Math.random() * (5 - 3) + 3).toFixed(1),
       number_of_reviews: getNumberOfReviews(),
       // isSuperhost: faker.random.boolean,
       address: getRandomAddress(),
       save_status: getSavednName(),
-      room_photos: getRandomImgUrlnDescriptionList(),
+      room_photos: getImgUrlnDescriptionList(),
     };
     photoGallerys.push(photogallery);
   }
