@@ -21,16 +21,14 @@ class App extends React.Component {
     axios.get('/api/photogallery/1')
     .then(({ data }) => {
       // handle success
-      console.log('Axios get photogallery response: ', data[0].room_photos);
-      console.log('Axios get photogallery response:data[0] ', data[0]);
       this.setState({
         photoGallery: data[0].room_photos,
         headerItem: data[0]
       })
     })
-    .catch((error) => {
+    .catch((err) => {
       // handle error
-      console.log(error);
+      console.log('err on axios get:', err);
     })
   }
 

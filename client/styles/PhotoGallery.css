@@ -1,0 +1,4 @@
+.gridContainer {
+  /* display: grid; */
+  display: inline-block
+}
