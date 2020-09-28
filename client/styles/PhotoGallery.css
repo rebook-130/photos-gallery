@@ -34,7 +34,15 @@
   width: 560px;
   object-fit: cover;
   border-radius: 12px 0px 0px 12px;
+}
 
+.imageContainer:hover {
+  -webkit-filter: brightness(70%);
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  -ms-transition: all 1s ease;
+  transition: all 1s ease;
 }
 
 .Image2 {
@@ -66,6 +74,25 @@
 
 }
 
+/* button layout */
+.morePicButton{
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  cursor: pointer;
+	background-color: white;
+	border-radius: 8px;
+	border: 1px solid #555555;
+	display: inline-block;
+	cursor: pointer;
+  color: rgb(34,34,34);
+  padding: 7px 14px;
+	font-family: Arial;
+  font-size:12px;
+  transition: all 0.5s ease;
+  transform: scale(1);
+}
+
 .Image5 {
   cursor: pointer;
   display: block;
@@ -75,5 +102,11 @@
   border-radius: 0px 0px 12px 0px;
   padding: 5px 0px 0px 5px;
 }
+
+/* .morePicButton {
+  border: 1px solid #555555;
+
+
+} */
 
 

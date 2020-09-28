@@ -9,10 +9,12 @@ class App extends React.Component {
     super(props);
     this.state = {
       data: {},
-      isLoaded: false
+      isLoaded: false,
+      clickedPhotoIndex: -1,
     };
     this.getPhotoGallery = this.getPhotoGallery.bind(this);
     this.renderView = this.renderView.bind(this);
+    this.getClickedPhoto = this.getClickedPhoto.bind(this);
   }
 
   componentDidMount() {
@@ -52,6 +54,12 @@ class App extends React.Component {
       });
   }
 
+  getClickedPhoto(idx) {
+    this.setState({
+      clickedPhotoIndex: idx
+    })
+  }
+
   renderView() {
     const isLoaded = this.state.isLoaded;
     const {imageList, imgDescriptionListimgDescriptionList, isSaved } = this.state.data;
@@ -67,7 +75,7 @@ class App extends React.Component {
       return (
         <div className={styles.bodyContainer}>
           <Header data={this.state.data}/>
-          <PhotoGallery data={this.state.data}/>
+          <PhotoGallery data={this.state.data} getClickedPhoto={this.getClickedPhoto}/>
       </div>
       )
     }

@@ -18,7 +18,7 @@ function Header(props) {
 
   return (
     <div className={styles.headerContainer}>
-      {console.log('props in Header', props.data)}
+      {/* {console.log('props in Header', props.data)} */}
 
       <span className={styles.title}>{ props.data.title }</span><br />
       <div className={styles.headerRest}>
