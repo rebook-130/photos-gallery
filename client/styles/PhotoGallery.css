@@ -7,7 +7,7 @@
 .Wrapper {
   display: flex;
   align-items: stretch;
-  width: 1140px;
+  width: 1120px;
   margin: auto;
 
   flex-wrap: nowrap;
@@ -27,13 +27,15 @@
   flex: 1;
 }
 
-.Image1 {
+.Image0 {
   cursor: pointer;
   display: block;
-  height: 560px;
+  height: 553px;
   width: 560px;
   object-fit: cover;
   border-radius: 12px 0px 0px 12px;
+  padding: 0px 0px 0px 8px;
+
 }
 
 .imageContainer:hover {
@@ -45,32 +47,33 @@
   transition: all 1s ease;
 }
 
-.Image2 {
+.Image1 {
   cursor: pointer;
   display: block;
   height: 272px;
   width: 270px;
   object-fit: cover;
-  padding: 0px 5px 10px 5px;
+  padding: 0px 0px 0px 8px;
+  /* padding: 0px 5px 10px 5px; */
 }
 
-.Image3 {
+.Image2 {
   cursor: pointer;
   display: block;
   width: 270px;
-  height: 270px;
+  height: 272px;
   object-fit: cover;
-  padding: 5px 5px 0px 5px;
+  padding: 8px 0px 0px 8px;
 }
 
-.Image4 {
+.Image3 {
   cursor: pointer;
   display: block;
   height: 272px;
   width: 270px;
   object-fit: cover;
   border-radius: 0px 12px 0px 0px;
-  padding: 0px 0px 10px 5px;
+  padding: 0px 0px 0px 8px;
 
 }
 
@@ -93,14 +96,14 @@
   transform: scale(1);
 }
 
-.Image5 {
+.Image4 {
   cursor: pointer;
   display: block;
   width: 270px;
-  height: 270px;
+  height: 272px;
   object-fit: cover;
   border-radius: 0px 0px 12px 0px;
-  padding: 5px 0px 0px 5px;
+  padding: 8px 0px 0px 8px;
 }
 
 /* .morePicButton {

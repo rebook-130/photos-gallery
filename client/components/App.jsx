@@ -1,6 +1,7 @@
 import React from 'react';
 import PhotoGallery from './PhotoGallery.jsx';
 import Header from './Header.jsx';
+// import ModalImages from './ModalImages.jsx';
 import axios from 'axios';
 import styles from '../styles/App.css';
 
@@ -27,7 +28,7 @@ class App extends React.Component {
         // console.log('data in axios get req', data);
         const imgUrlList = [];
         const descriptionList = [];
-        for (let i = 0; i < data[0].room_photos.length; i++) {
+        for (let i = 0; i < data[0].room_photos.length; i += 1) {
           imgUrlList.push(data[0].room_photos[i].imageUrl);
           descriptionList.push(data[0].room_photos[i].description);
         }
@@ -62,7 +63,7 @@ class App extends React.Component {
 
   renderView() {
     const isLoaded = this.state.isLoaded;
-    const {imageList, imgDescriptionListimgDescriptionList, isSaved } = this.state.data;
+    const { imageList, imgDescriptionListimgDescriptionList, isSaved } = this.state.data;
 
     if (!isLoaded) {
       return (
@@ -79,7 +80,13 @@ class App extends React.Component {
       </div>
       )
     }
-  }
+    // clicking each photo, a modal will show up
+    // if (this.state.clickedPhotoIndex > -1) {
+    //   <div className={styles.bodyContainer}>
+    //     <ModalImages data={this.state.data} clickedPhotoIndex={this.state.clickedPhotoIndex}/>
+    //   </div>
+    }
+
 
   // main render()
   render() {
