@@ -20,6 +20,11 @@ const address = [
   'Aewol-eup, Jeju-si, Jeju Province, South Korea'
 ];
 
+const getRandomSuperhost = () => {
+  const isSuperhost = faker.random.boolean;
+  return isSuperhost;
+};
+
 const getRandomAddress = () => {
   const max = address.length - 1;
   const min = 0;
@@ -32,10 +37,6 @@ const getNumberOfReviews = () => {
   const min = 100;
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
-
-// 'https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_000_Big.jpg',
-// 'https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_031_big.jpg',
-// 'https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_036_sf.jpg',
 
 const photos = [
 
@@ -60,35 +61,16 @@ const photos = [
   'https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_037_sf.jpg',
   'https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_038_sf.jpg',
   'https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_039_sf.jpg',
-  'https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_040_sf.jpg'
-
+  'https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_040_sf.jpg',
 ];
 
-// const getImgUrlnDescription = () => {
-//   // const randomIndex = Math.floor(Math.random() * (max - min + 1)) + min;
-//   const numberOfWords = Math.floor(Math.random() * (6 - 0) + 0);
-//   for (let i = 0; i < photos.length; i++) {
-//     return { imageUrl: photos[i], description: faker.lorem.words(numberOfWords) };
-//   }
-// };
-
-// const getImgUrlnDescriptionList = () => {
-//   const imageUrlList = [];
-//   const numberOfPhotos = 5;
-
-//   for (let i = 0; i < numberOfPhotos; i++) {
-//     const randomImgUrlnDescription = getImgUrlnDescription();
-//     imageUrlList.push(randomImgUrlnDescription);
-//   }
-//   return imageUrlList;
-// };
 
 const getImgUrlnDescriptionList = () => {
   const imageUrlList = [];
   const numberOfPhotos = 5;
   const numberOfWords = Math.floor(Math.random() * (6 - 0) + 0);
 
-  for (let i = 0; i < numberOfPhotos; i++) {
+  for (let i = 0; i < numberOfPhotos; i += 1) {
     imageUrlList.push({ imageUrl: photos[i], description: faker.lorem.words(numberOfWords) });
   }
   return imageUrlList;
@@ -104,14 +86,14 @@ const makePhotoGallerysData = (num) => {
   const numOfPhotoGallerys = num || 1;
   const photoGallerys = [];
 
-  for (let i = 0; i < numOfPhotoGallerys; i++) {
+  for (let i = 0; i < numOfPhotoGallerys; i += 1) {
     const photogallery = {
       user_id: i + 1,
       room_id: i + 1,
       title: getRandomTitle(),
-      ratings: (Math.random() * (5 - 3) + 3).toFixed(1),
+      ratings: (Math.random() * (5 - 4) + 4).toFixed(1),
       number_of_reviews: getNumberOfReviews(),
-      // isSuperhost: faker.random.boolean,
+      isSuperhost: true,
       address: getRandomAddress(),
       save_status: getSavednName(),
       room_photos: getImgUrlnDescriptionList(),

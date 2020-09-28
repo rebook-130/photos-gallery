@@ -1,17 +1,20 @@
 import React from 'react';
-import PhotoGalleryItem from './PhotoGalleryItem.jsx';
 import styles from '../styles/PhotoGallery.css';
 
-function PhotoGallery(props) {
+function PhotoGallery({data}) {
   return (
-    <div className={styles.gridContainer}>
-      {/* {console.log('props in photogallery', props.items)} */}
-      {props.items.map(item => <PhotoGalleryItem item={item}/>)}
-      {/* <div>{props.items[0].room_photos}</div> */}
-      {/* <div>{props.items[0].room_photos[0]}</div>
-      <div>{props.items[0].room_photos[1]}</div>
-      <div>{props.items[0].room_photos[2]}</div>
-      <div>{props.items[0].room_photos[3]}</div> */}
+    <div className={styles.Wrapper}>
+      <div className={styles.Image1Container}>
+          <img className={styles.Image1} src={data.imageList[0]} />
+      </div>
+      <div className={styles.Image23Container}>
+          <img className={styles.Image2} src={data.imageList[1]} />
+          <img className={styles.Image3} src={data.imageList[2]} />
+      </div>
+      <div className={styles.Image45Container}>
+          <img className={styles.Image4} src={data.imageList[3]} />
+          <img className={styles.Image5} src={data.imageList[4]} />
+      </div>
     </div>
   )
 }
