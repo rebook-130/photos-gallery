@@ -17,6 +17,7 @@ class App extends React.Component {
     this.getPhotoGallery = this.getPhotoGallery.bind(this);
     this.renderView = this.renderView.bind(this);
     this.getClickedPhoto = this.getClickedPhoto.bind(this);
+    this.closeModalHandler = this.closeModalHandler.bind(this);
   }
 
   componentDidMount() {
@@ -64,6 +65,13 @@ class App extends React.Component {
     })
   }
 
+  closeModalHandler(value) {
+    console.log('app closeModal- true', value)
+    this.setState({
+      showModal: false,
+    })
+  }
+
   renderView() {
     const isLoaded = this.state.isLoaded;
     const clickedPhotoIndex = this.state.clickedPhotoIndex;
@@ -80,7 +88,7 @@ class App extends React.Component {
     // clicking each photo, a modal will show up
     if (showModal) {
       return (
-        <ModalImages data={this.state.data} clickedPhotoIndex={this.state.clickedPhotoIndex}/>
+        <ModalImages data={this.state.data} clickedPhotoIndex={this.state.clickedPhotoIndex} closeModalHandler={this.closeModalHandler}/>
       )
     }
 

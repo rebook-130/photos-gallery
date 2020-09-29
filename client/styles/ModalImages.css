@@ -15,21 +15,49 @@
   background: rgba(34,34,34,0.1);
   color: #222222;
   border: none;
+}
 
+.closeBtn:hover {
+  background-color: #d4d3d3;
 }
 
 .photoList {
   display: flex;
-  /* align-items: stretch; */
   width: 650px;
   margin: auto;
-/*
-  flex-wrap: nowrap;
-  justify-content: center;
-  box-sizing: border-box;
-  position: relative;
-  padding: 10px 0px 0px; */
+}
 
+
+.bodyModal {
+  display: flex;
+  align-items: center;
+}
+
+.prevBtn {
+  border-radius: 50%;
+  width: 43px;
+  height: 43px;
+  border: 1px solid	#b2b2b2;
+  background-color: white;
+  margin-left: 25px;
+}
+
+.prevBtn:hover {
+  background-color: #f7f7f7;
+}
+
+.nextBtn {
+
+  border-radius: 50%;
+  width: 43px;
+  height: 43px;
+  border: 1px solid	#b2b2b2;
+  background-color: white;
+  margin-right: 25px;
+}
+
+.nextBtn:hover {
+  background-color: #f7f7f7;
 }
 
 /* .saveBtn {
