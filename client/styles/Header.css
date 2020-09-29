@@ -1,0 +1,107 @@
+.headerContainer {
+  max-width: 1120px;
+  padding: 24px 0px 0px;
+}
+
+.title {
+  font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif;
+  display:block;
+  box-sizing: border-box;
+  margin-bottom: 4px;
+  color: #222222;
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 30px;
+  height: 30px;
+}
+
+.headerRest {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+}
+
+.headerRestLeft {
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: nowrap;
+  font-family: Circular, -apple-system, system-ui, Roboto, "Helvetica Neue", sans-serif;
+  color: #222222;
+  font-size: 14px;
+  font-weight: 400;
+  height: 30px;
+}
+
+.starImg {
+  display: inline-flex;
+  height: 16px;
+  width: 16px;
+  overflow: hidden;
+  cursor: pointer;
+
+}
+
+.spanRating {
+  color: #222222;
+}
+
+.spanReviewNumber {
+  color: #717171;
+  cursor: pointer;
+  display: inline-flex;
+  min-width: 0px;
+  box-sizing: border-box;
+}
+
+.superhostImg {
+  display: inline-flex;
+  height: 16px;
+  width: 16px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.superhost {
+  color: #717171;
+  cursor: pointer;
+  display: inline-flex;
+  min-width: 0px;
+  box-sizing: border-box;
+}
+
+.address {
+  color: #686868;
+  font-weight: 20;
+  cursor: pointer;
+  display: inline-flex;
+  min-width: 0px;
+  box-sizing: border-box;
+  text-decoration: underline;
+}
+
+.saveHeartBtn {
+  border: none;
+  background: white;
+  cursor: pointer;
+  color: #222222;
+  font-size: 14px;
+  line-height: 20px;
+  text-decoration: underline;
+
+  display: flex;
+  align-items:center;
+}
+
+.saveHeartBtn:hover {
+  border: none;
+  border-radius: 10% 10% 10% 10%;
+  background: lightgray;
+}
+
+.saveIcon {
+  width: 14px;
+  height: 14px;
+  margin-right: 8px;
+}
+

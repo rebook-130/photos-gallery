@@ -1,0 +1,116 @@
+/* .WrapperOuter {
+  display: block;
+  box-sizing: border-box;
+} */
+
+
+.Wrapper {
+  display: flex;
+  align-items: stretch;
+  width: 1120px;
+  margin: auto;
+
+  flex-wrap: nowrap;
+  justify-content: center;
+  box-sizing: border-box;
+  position: relative;
+  padding: 10px 0px 0px;
+}
+
+.Image1Container {
+  flex: 2;
+}
+
+.Image23Container {
+  flex: 1;
+}
+.Image45Container {
+  flex: 1;
+}
+
+.Image0 {
+  cursor: pointer;
+  display: block;
+  width: 560px;
+  height: 395.59px;
+
+  object-fit: cover;
+  border-radius: 12px 0px 0px 12px;
+  /* padding: 0px 0px 0px 8px; */
+
+}
+
+.imageContainer:hover {
+  -webkit-filter: brightness(70%);
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  -ms-transition: all 1s ease;
+  transition: all 1s ease;
+}
+
+.Image1 {
+  cursor: pointer;
+  display: block;
+  width: 272px;
+  height: 197.8px;
+  object-fit: cover;
+  padding: 0px 0px 0px 8px;
+}
+
+.Image2 {
+  cursor: pointer;
+  display: block;
+  width: 272px;
+  height: 189.8px;
+  object-fit: cover;
+  padding: 8px 0px 0px 8px;
+}
+
+.Image3 {
+  cursor: pointer;
+  display: block;
+  width: 272px;
+  height: 197.8px;
+  object-fit: cover;
+  border-radius: 0px 12px 0px 0px;
+  padding: 0px 0px 0px 8px;
+
+}
+
+/* button layout */
+.morePicButton{
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  cursor: pointer;
+	background-color: white;
+	border-radius: 8px;
+	border: 1px solid #555555;
+	display: inline-block;
+	cursor: pointer;
+  color: #222222;
+  padding: 7px 14px;
+	font-family: Arial;
+  font:12px;
+  transition: all 0.5s ease;
+  transform: scale(1);
+}
+
+.morePicButton:hover {
+  background: rgb(243, 239, 239);
+
+}
+
+.Image4 {
+  cursor: pointer;
+  display: block;
+  width: 272px;
+  height: 189.8px;
+  object-fit: cover;
+  border-radius: 0px 0px 12px 0px;
+  padding: 8px 0px 0px 8px;
+}
+
+
+
