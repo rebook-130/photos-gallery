@@ -79,8 +79,10 @@ class App extends React.Component {
 
     if (!isLoaded) {
       return (
-        <div>
-          It is loading...
+        <div className={styles.spinner}>
+          <div className={styles.bounce1}></div>
+          <div className={styles.bounce2}></div>
+          <div className={styles.bounce3}></div>
         </div>
       )
     }

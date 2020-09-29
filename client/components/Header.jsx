@@ -27,6 +27,8 @@ function Header(props) {
         <span className={ styles.spanReviewNumber }> ({ props.data.number_of_reviews }) </span>
         {isSuperhost()}
         <span className={ styles.address }> { props.data.address }</span>
+        {/* save function */}
+        {/* <span className={styles.save}><img className={styles.saveIcon} src={} />Save</span> */}
       </div>
     </div>
   )
