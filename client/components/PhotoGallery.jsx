@@ -1,6 +1,5 @@
 import React from 'react';
-// import styles from '../styles/PhotoGallery.css';
-import ModalImages from './Modalmages.jsx';
+import styles from '../styles/PhotoGallery.css';
 
 class PhotoGallery extends React.Component {
   constructor(props) {
@@ -20,29 +19,24 @@ class PhotoGallery extends React.Component {
     console.log('photo0 or show all photos clicked')
     this.props.getClickedPhoto(0);
   }
+
   photo1Clicked() {
-    console.log('photo1 clicked')
-    this.props.getClickedPhoto(1)
+    this.props.getClickedPhoto(1);
   }
+
   photo2Clicked() {
-    console.log('photo2 clicked')
-    this.props.getClickedPhoto(2)
+    this.props.getClickedPhoto(2);
   }
+
   photo3Clicked() {
-    console.log('photo3 clicked')
-    this.props.getClickedPhoto(3)
+    this.props.getClickedPhoto(3);
   }
+
   photo4Clicked() {
-    console.log('photo4 clicked')
-    this.props.getClickedPhoto(4)
+    this.props.getClickedPhoto(4);
   }
 
   render() {
-    const showModal = this.state.showModal;
-    if (showModal) {
-      <ModalImages />
-    }
-
     return (
       <div className={styles.Wrapper}>
         <div className={styles.Image1Container}>

@@ -58,18 +58,17 @@ class App extends React.Component {
   }
 
   getClickedPhoto(idx) {
-    console.log('app getClickedPhoto-idx', idx)
+    console.log('app getClickedPhoto-idx', idx);
     this.setState({
       clickedPhotoIndex: idx,
       showModal: true,
-    })
+    });
   }
 
   closeModalHandler(value) {
-    console.log('app closeModal- true', value)
     this.setState({
       showModal: false,
-    })
+    });
   }
 
   renderView() {
@@ -85,7 +84,7 @@ class App extends React.Component {
         </div>
       )
     }
-    // clicking each photo, a modal will show up
+    // When clicking each photo, a modal will show up
     if (showModal) {
       return (
         <ModalImages data={this.state.data} clickedPhotoIndex={this.state.clickedPhotoIndex} closeModalHandler={this.closeModalHandler}/>
