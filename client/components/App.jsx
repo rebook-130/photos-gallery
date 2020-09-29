@@ -1,8 +1,8 @@
 import React from 'react';
-import PhotoGallery from './PhotoGallery.jsx';
-import Header from './Header.jsx';
-import ModalImages from './Modalmages.jsx';
 import axios from 'axios';
+import Header from './Header.jsx';
+import PhotoGallery from './PhotoGallery.jsx';
+import ModalImages from './Modalmages.jsx';
 import styles from '../styles/App.css';
 
 class App extends React.Component {

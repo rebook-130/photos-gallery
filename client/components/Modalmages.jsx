@@ -5,14 +5,21 @@ class ModalImages extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // showModal: false
+      currentPhoto: this.props.clickedPhotoIndex
     };
     this.closeModal = this.closeModal.bind(this);
+    this.nextBtnHandler = this.nextBtnHandler.bind(this);
   }
 
   closeModal() {
-    console.log('close clicked')
     this.props.closeModalHandler(true)
+  }
+
+  nextBtnHandler() {
+    console.log('next button clicked')
+    this.setState({
+      currentPhoto: currentPhoto + 1
+    })
   }
 
   render() {
@@ -27,8 +34,8 @@ class ModalImages extends React.Component {
 
         <div className={styles.bodyModal}>
           <button className={styles.prevBtn}> pre </button>
-          <img className={styles.photoList} src={this.props.data.imageList[this.props.clickedPhotoIndex]} />
-          <button className={styles.nextBtn}> > </button>
+          <img className={styles.photoList} src={this.props.data.imageList[this.state.currentPhoto]} />
+          <button className={styles.nextBtn} onClick={this.nextBtnHandler}> > </button>
 
         </div>
       </div>

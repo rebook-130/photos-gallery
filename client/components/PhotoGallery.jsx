@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../styles/PhotoGallery.css';
+// import styles from '../styles/PhotoGallery.css';
 import ModalImages from './Modalmages.jsx';
 
 class PhotoGallery extends React.Component {
