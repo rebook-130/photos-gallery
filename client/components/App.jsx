@@ -1,7 +1,7 @@
 import React from 'react';
 import PhotoGallery from './PhotoGallery.jsx';
 import Header from './Header.jsx';
-// import ModalImages from './ModalImages.jsx';
+import ModalImages from './Modalmages.jsx';
 import axios from 'axios';
 import styles from '../styles/App.css';
 
@@ -12,6 +12,7 @@ class App extends React.Component {
       data: {},
       isLoaded: false,
       clickedPhotoIndex: -1,
+      showModal: false,
     };
     this.getPhotoGallery = this.getPhotoGallery.bind(this);
     this.renderView = this.renderView.bind(this);
@@ -56,13 +57,17 @@ class App extends React.Component {
   }
 
   getClickedPhoto(idx) {
+    console.log('app getClickedPhoto-idx', idx)
     this.setState({
-      clickedPhotoIndex: idx
+      clickedPhotoIndex: idx,
+      showModal: true,
     })
   }
 
   renderView() {
     const isLoaded = this.state.isLoaded;
+    const clickedPhotoIndex = this.state.clickedPhotoIndex;
+    const showModal= this.state.showModal;
     const { imageList, imgDescriptionListimgDescriptionList, isSaved } = this.state.data;
 
     if (!isLoaded) {
@@ -72,21 +77,22 @@ class App extends React.Component {
         </div>
       )
     }
+    // clicking each photo, a modal will show up
+    if (showModal) {
+      return (
+        <ModalImages data={this.state.data} clickedPhotoIndex={this.state.clickedPhotoIndex}/>
+      )
+    }
+
     if (imageList.length >= 5) {
       return (
         <div className={styles.bodyContainer}>
-          <Header data={this.state.data}/>
-          <PhotoGallery data={this.state.data} getClickedPhoto={this.getClickedPhoto}/>
-      </div>
+          <Header data={this.state.data} />
+          <PhotoGallery data={this.state.data} getClickedPhoto={this.getClickedPhoto} />
+        </div>
       )
     }
-    // clicking each photo, a modal will show up
-    // if (this.state.clickedPhotoIndex > -1) {
-    //   <div className={styles.bodyContainer}>
-    //     <ModalImages data={this.state.data} clickedPhotoIndex={this.state.clickedPhotoIndex}/>
-    //   </div>
-    }
-
+  }
 
   // main render()
   render() {

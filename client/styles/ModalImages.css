@@ -1,0 +1,37 @@
+.headerModal {
+  display: flex;
+  justify-content: space-between;
+  padding: 40px 20px 20px;
+
+}
+
+.closeBtn {
+  cursor: pointer;
+  /* display: incline-block; */
+  box-sizing: border-box;
+  position: relative;
+  padding: 8px 16px 8px 16px;
+  border-radius: 8px;
+  background: rgba(34,34,34,0.1);
+  color: #222222;
+  border: none;
+
+}
+
+.photoList {
+  display: flex;
+  /* align-items: stretch; */
+  width: 650px;
+  margin: auto;
+/*
+  flex-wrap: nowrap;
+  justify-content: center;
+  box-sizing: border-box;
+  position: relative;
+  padding: 10px 0px 0px; */
+
+}
+
+/* .saveBtn {
+
+} */

@@ -1,12 +1,12 @@
 import React from 'react';
 import styles from '../styles/PhotoGallery.css';
-
-
+import ModalImages from './Modalmages.jsx';
 
 class PhotoGallery extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+
     };
 
     this.photo0Clicked = this.photo0Clicked.bind(this);
@@ -38,6 +38,11 @@ class PhotoGallery extends React.Component {
   }
 
   render() {
+    const showModal = this.state.showModal;
+    if (showModal) {
+      <ModalImages />
+    }
+
     return (
       <div className={styles.Wrapper}>
         <div className={styles.Image1Container}>
