@@ -31,11 +31,12 @@
 .Image0 {
   cursor: pointer;
   display: block;
-  height: 553px;
   width: 560px;
+  height: 395.59px;
+
   object-fit: cover;
   border-radius: 12px 0px 0px 12px;
-  padding: 0px 0px 0px 8px;
+  /* padding: 0px 0px 0px 8px; */
 
 }
 
@@ -51,8 +52,8 @@
 .Image1 {
   cursor: pointer;
   display: block;
-  height: 272px;
-  width: 270px;
+  width: 272px;
+  height: 197.8px;
   object-fit: cover;
   padding: 0px 0px 0px 8px;
 }
@@ -60,8 +61,8 @@
 .Image2 {
   cursor: pointer;
   display: block;
-  width: 270px;
-  height: 272px;
+  width: 272px;
+  height: 189.8px;
   object-fit: cover;
   padding: 8px 0px 0px 8px;
 }
@@ -69,8 +70,8 @@
 .Image3 {
   cursor: pointer;
   display: block;
-  height: 272px;
-  width: 270px;
+  width: 272px;
+  height: 197.8px;
   object-fit: cover;
   border-radius: 0px 12px 0px 0px;
   padding: 0px 0px 0px 8px;
@@ -88,19 +89,24 @@
 	border: 1px solid #555555;
 	display: inline-block;
 	cursor: pointer;
-  color: rgb(34,34,34);
+  color: #222222;
   padding: 7px 14px;
 	font-family: Arial;
-  font-size:12px;
+  font:12px;
   transition: all 0.5s ease;
   transform: scale(1);
+}
+
+.morePicButton:hover {
+  background: rgb(243, 239, 239);
+
 }
 
 .Image4 {
   cursor: pointer;
   display: block;
-  width: 270px;
-  height: 272px;
+  width: 272px;
+  height: 189.8px;
   object-fit: cover;
   border-radius: 0px 0px 12px 0px;
   padding: 8px 0px 0px 8px;

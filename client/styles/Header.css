@@ -1,5 +1,6 @@
 .headerContainer {
   max-width: 1120px;
+  padding: 24px 0px 0px;
 }
 
 .title {
@@ -15,6 +16,13 @@
 }
 
 .headerRest {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+}
+
+.headerRestLeft {
   box-sizing: border-box;
   display: flex;
   flex-wrap: nowrap;
@@ -71,3 +79,29 @@
   box-sizing: border-box;
   text-decoration: underline;
 }
+
+.saveHeartBtn {
+  border: none;
+  background: white;
+  cursor: pointer;
+  color: #222222;
+  font-size: 14px;
+  line-height: 20px;
+  text-decoration: underline;
+
+  display: flex;
+  align-items:center;
+}
+
+.saveHeartBtn:hover {
+  border: none;
+  border-radius: 10% 10% 10% 10%;
+  background: lightgray;
+}
+
+.saveIcon {
+  width: 14px;
+  height: 14px;
+  margin-right: 8px;
+}
+
