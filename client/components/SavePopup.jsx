@@ -9,25 +9,24 @@ class SavePopup extends React.Component {
     };
   }
 
-  // createSave() {
-  //   //sendSaveName
-  // }
-
   render() {
     // conditional rendering
+    if (!this.props.show) {
+      return null;
+    }
 
     return (
-      <div className={styles.savePopupModal}>
-        {console.log('SavePopup render')}
-        <form onSubmit={this.handleSubmit}>
-        <label>
-          Save to a list
-          <textarea value={this.state.value} onChange={this.handleChange} />
-        </label>
-        <input type="submit" value="Create a list" />
-      </form>
+      <div className={styles.backdrop}>
+        <form className={styles.modalMain} onSubmit={this.handleSubmit}>
+        {/* {console.log('SavePopup render-this.props', this.props)} */}
+          <div> Save to a list </div>
+          <hr />
+          <input type="text" placeholder="name" />
+          <hr />
+          <input type="submit" value="Create a list" />
+        </form>
       </div>
-    )
+    );
   }
 }
 

@@ -97,7 +97,6 @@
   line-height: 20px;
   text-decoration: underline;
 
-
   display: flex;
   align-items:center;
 }
@@ -107,6 +106,8 @@
   border-radius: 10% 10% 10% 10%;
   background:  rgb(248, 244, 244)
 }
+
+.saveHeartBtn:focus {outline:0;}
 
 .saveIcon {
   width: 14px;

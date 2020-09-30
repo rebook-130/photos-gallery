@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 import React from 'react';
 import axios from 'axios';
 import Header from './Header.jsx';
@@ -13,7 +14,6 @@ class App extends React.Component {
       isLoaded: false,
       clickedPhotoIndex: -1,
       showModal: false,
-      // showSavePopup: false,
     };
     this.getPhotoGallery = this.getPhotoGallery.bind(this);
     this.renderView = this.renderView.bind(this);
@@ -27,9 +27,9 @@ class App extends React.Component {
   }
 
   getPhotoGallery() {
-    axios.get(`/api/photogallery/1`)
+    axios.get('/api/photogallery/1')
       .then(({ data }) => {
-        // console.log('data in axios get req', data);
+        console.log('data in axios get req', data);
         const imgUrlList = [];
         const descriptionList = [];
         for (let i = 0; i < data[0].room_photos.length; i += 1) {
@@ -38,6 +38,7 @@ class App extends React.Component {
         }
 
         const oneListing = {
+          room_id: data[0].room_id,
           title: data[0].title,
           ratings: data[0].ratings,
           number_of_reviews: data[0].number_of_reviews,

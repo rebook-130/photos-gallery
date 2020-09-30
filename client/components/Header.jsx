@@ -11,40 +11,52 @@ class Header extends React.Component {
     super(props);
     this.state = {
       showPopup: false,
-      isSaved: this.props.data.isSaved,
+      isSaved: false,
 
     };
     this.clickSaveHandler = this.clickSaveHandler.bind(this);
     this.isSuperhost = this.isSuperhost.bind(this);
   }
 
-  clickSaveHandler() {
-    {console.log('clickSave in Header')}
+  clickSaveHandler(room_id) {
+    {console.log('clickSave in Header-room_id', room_id)}
     {console.log('this.state.showPopup', this.state.showPopup)}
 
-    this.setState({
-      isSaved: !this.state.isSaved
-    })
+    if (!this.state.isSaved) {
+      this.setState({
+        showPopup: true,
+        isSaved: !this.state.isSaved,
+      });
+    } else {
+      this.setState({
+        isSaved: !this.state.isSaved,
+      });
+    }
   }
+
 
   isSuperhost() {
     if (this.props.data.isSuperhost) {
       return (
         <div>
-          <span> · <img className={ styles.superhostImg } src={ superHostSvg } /> </span>
-          <span className={ styles.superhost }> Superhost · </span>
+          <span> ·
+            <img className={styles.superhostImg}
+             src={superHostSvg} />
+          </span>
+          <span className ={styles.superhost}> Superhost · </span>
         </div>
-      )
+      );
     }
-    return (' . ')
+    return (' . ');
   }
 
   render() {
     return (
       <div className={styles.headerContainer}>
-         {console.log('props in Header', this.props)}
+        {console.log('props in Header', this.props)}
 
-        <span className={styles.title}>{ this.props.data.title }</span><br />
+        <span className={styles.title}>{ this.props.data.title }</span>
+        <br />
 
         <div className={styles.headerRest}>
           <div className={styles.headerRestLeft}>
@@ -56,10 +68,13 @@ class Header extends React.Component {
           </div>
 
           {/* SAVE  */}
-          <button className={ styles.saveHeartBtn} onClick={this.clickSaveHandler}>
+          <button className={ styles.saveHeartBtn} onClick={() => {
+            this.clickSaveHandler(this.props.data.room_id)
+          }}>
           {this.state.isSaved ? <img className={styles.saveIcon} src={savedHeartSvg}/> :
           <img className={styles.saveIcon} src={saveHeartSvg} /> } {this.state.isSaved ? 'Saved' : 'Save'}
           </button>
+          <SavePopup show={this.state.showPopup}/>
         </div>
       </div>
     )
