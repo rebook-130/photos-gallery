@@ -1,13 +1,12 @@
 .headerContainer {
   max-width: 1120px;
-  padding: 24px 0px 0px;
+  padding: 20px 0px 0px;
 }
 
 .title {
   font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif;
   display:block;
   box-sizing: border-box;
-  margin-bottom: 4px;
   color: #222222;
   font-size: 26px;
   font-weight: 600;
@@ -17,20 +16,21 @@
 
 .headerRest {
   display: flex;
-  align-items: center;
+  /* align-items:center; */
   justify-content: space-between;
 
 }
 
 .headerRestLeft {
-  box-sizing: border-box;
   display: flex;
+  align-items:center;
+  box-sizing: border-box;
   flex-wrap: nowrap;
   font-family: Circular, -apple-system, system-ui, Roboto, "Helvetica Neue", sans-serif;
   color: #222222;
   font-size: 14px;
   font-weight: 400;
-  height: 30px;
+  /* height: 30px; */
 }
 
 .starImg {
@@ -39,11 +39,14 @@
   width: 16px;
   overflow: hidden;
   cursor: pointer;
+  margin-right: 3px;
 
 }
 
 .spanRating {
   color: #222222;
+  margin-right: 5px;
+
 }
 
 .spanReviewNumber {
@@ -52,6 +55,7 @@
   display: inline-flex;
   min-width: 0px;
   box-sizing: border-box;
+  margin-right: 5px;
 }
 
 .superhostImg {
@@ -68,6 +72,7 @@
   display: inline-flex;
   min-width: 0px;
   box-sizing: border-box;
+  margin-right: 5px;
 }
 
 .address {
@@ -78,6 +83,7 @@
   min-width: 0px;
   box-sizing: border-box;
   text-decoration: underline;
+  margin-left: 5px;
 }
 
 .saveHeartBtn {

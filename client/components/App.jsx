@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Header from './Header.jsx';
 import PhotoGallery from './PhotoGallery.jsx';
-import ModalImages from './Modalmages.jsx';
+import ModalImages from './ModalImages.jsx';
 import styles from '../styles/App.css';
 
 class App extends React.Component {
