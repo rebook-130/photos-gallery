@@ -13,11 +13,13 @@ class App extends React.Component {
       isLoaded: false,
       clickedPhotoIndex: -1,
       showModal: false,
+      // showSavePopup: false,
     };
     this.getPhotoGallery = this.getPhotoGallery.bind(this);
     this.renderView = this.renderView.bind(this);
     this.getClickedPhoto = this.getClickedPhoto.bind(this);
     this.closeModalHandler = this.closeModalHandler.bind(this);
+    this.sendSaveName = this.sendSaveName.bind(this);
   }
 
   componentDidMount() {
@@ -71,6 +73,11 @@ class App extends React.Component {
     });
   }
 
+  sendSaveName(roomId, name) {
+    console.log('App update save name and about to send axios')
+
+  }
+
   renderView() {
     const isLoaded = this.state.isLoaded;
     const clickedPhotoIndex = this.state.clickedPhotoIndex;
@@ -89,14 +96,16 @@ class App extends React.Component {
     // When clicking each photo, a modal will show up
     if (showModal) {
       return (
-        <ModalImages data={this.state.data} clickedPhotoIndex={this.state.clickedPhotoIndex} closeModalHandler={this.closeModalHandler}/>
+        <ModalImages data={this.state.data} clickedPhotoIndex={this.state.clickedPhotoIndex}
+        closeModalHandler={this.closeModalHandler}
+        sendSaveName={this.sendSaveName}/>
       )
     }
 
     if (imageList.length >= 5) {
       return (
         <div className={styles.bodyContainer}>
-          <Header data={this.state.data} />
+          <Header data={this.state.data} sendSaveName={this.sendSaveName}/>
           <PhotoGallery data={this.state.data} getClickedPhoto={this.getClickedPhoto} />
         </div>
       )

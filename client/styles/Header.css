@@ -85,9 +85,12 @@
   background: white;
   cursor: pointer;
   color: #222222;
+  width: 71px;
+  height: 34px;
   font-size: 14px;
   line-height: 20px;
   text-decoration: underline;
+
 
   display: flex;
   align-items:center;
@@ -96,7 +99,7 @@
 .saveHeartBtn:hover {
   border: none;
   border-radius: 10% 10% 10% 10%;
-  background: lightgray;
+  background:  rgb(248, 244, 244)
 }
 
 .saveIcon {

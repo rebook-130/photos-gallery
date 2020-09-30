@@ -97,6 +97,25 @@
 }
 
 
-/* .saveBtn {
+.saveHeartBtn {
 
-} */
+  border-radius: 50%;
+  border: none;
+  background: white;
+  cursor: pointer;
+  color: #222222;
+  width: 30px;
+  height: 30px;
+}
+
+.saveHeartBtn:hover {
+  border: none;
+  background:  rgb(248, 244, 244)
+
+}
+
+.saveIcon {
+  width: 16px;
+  height: 16px;
+  margin-right: 20px;
+}
