@@ -21,3 +21,4 @@ module.exports = {
     "\\.(css|less|scss|sass)$": "<rootDir>/__mocks__/styleMock.js"
   },
 };
+

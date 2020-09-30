@@ -1,8 +1,9 @@
+/* eslint-disable import/extensions */
 import React from 'react';
 import axios from 'axios';
 import Header from './Header.jsx';
 import PhotoGallery from './PhotoGallery.jsx';
-import ModalImages from './Modalmages.jsx';
+import ModalImages from './ModalImages.jsx';
 import styles from '../styles/App.css';
 
 class App extends React.Component {
@@ -18,6 +19,7 @@ class App extends React.Component {
     this.renderView = this.renderView.bind(this);
     this.getClickedPhoto = this.getClickedPhoto.bind(this);
     this.closeModalHandler = this.closeModalHandler.bind(this);
+    this.sendSaveName = this.sendSaveName.bind(this);
   }
 
   componentDidMount() {
@@ -25,9 +27,9 @@ class App extends React.Component {
   }
 
   getPhotoGallery() {
-    axios.get(`/api/photogallery/1`)
+    axios.get('/api/photogallery/1')
       .then(({ data }) => {
-        // console.log('data in axios get req', data);
+        console.log('data in axios get req', data);
         const imgUrlList = [];
         const descriptionList = [];
         for (let i = 0; i < data[0].room_photos.length; i += 1) {
@@ -36,6 +38,7 @@ class App extends React.Component {
         }
 
         const oneListing = {
+          room_id: data[0].room_id,
           title: data[0].title,
           ratings: data[0].ratings,
           number_of_reviews: data[0].number_of_reviews,
@@ -71,6 +74,11 @@ class App extends React.Component {
     });
   }
 
+  sendSaveName(roomId, name) {
+    console.log('App update save name and about to send axios')
+
+  }
+
   renderView() {
     const isLoaded = this.state.isLoaded;
     const clickedPhotoIndex = this.state.clickedPhotoIndex;
@@ -89,14 +97,16 @@ class App extends React.Component {
     // When clicking each photo, a modal will show up
     if (showModal) {
       return (
-        <ModalImages data={this.state.data} clickedPhotoIndex={this.state.clickedPhotoIndex} closeModalHandler={this.closeModalHandler}/>
+        <ModalImages data={this.state.data} clickedPhotoIndex={this.state.clickedPhotoIndex}
+        closeModalHandler={this.closeModalHandler}
+        sendSaveName={this.sendSaveName}/>
       )
     }
 
     if (imageList.length >= 5) {
       return (
         <div className={styles.bodyContainer}>
-          <Header data={this.state.data} />
+          <Header data={this.state.data} sendSaveName={this.sendSaveName}/>
           <PhotoGallery data={this.state.data} getClickedPhoto={this.getClickedPhoto} />
         </div>
       )
