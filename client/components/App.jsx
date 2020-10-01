@@ -49,6 +49,7 @@ class App extends React.Component {
           address: data[0].address,
           isSaved: data[0].save_status[0].isSaved,
           savedName: data[0].save_status[0].name,
+          saveId: data[0].save_status[0]._id,
           imageList: imgUrlList,
           imgDescriptionList: descriptionList,
         };
@@ -71,14 +72,30 @@ class App extends React.Component {
     });
   }
 
+  // Update save name & isSaved
+  sendSaveName(roomId, saveId, name) {
+    console.log('App update save name and about to send axios, roomId & saveId & name', roomId, saveId, name);
+
+    axios.put(`/api/photogallery/${roomId}`, {
+      saveId: saveId,
+      saveName: name,
+      isSaved: true,
+    })
+      // .then((res) => {
+      //   console.log('App Update save name Succes', res);
+      // })
+      .then(this.getPhotoGallery)
+      .catch((err) => {
+        console.log('err on axios update:', err);
+      });
+  }
+
+
+
   closeModalHandler(value) {
     this.setState({
       showModal: false,
     });
-  }
-
-  sendSaveName(roomId, name) {
-    console.log('App update save name and about to send axios');
   }
 
   renderView() {
@@ -111,7 +128,7 @@ class App extends React.Component {
     if (imageList.length >= 5) {
       return (
         <div className={styles.bodyContainer}>
-          <Header data={this.state.data} sendSaveName={this.sendSaveName} />
+          <Header data={this.state.data} sendSaveName={this.sendSaveName} saveId={this.state.data.saveId}/>
           <PhotoGallery data={this.state.data} getClickedPhoto={this.getClickedPhoto} />
         </div>
       );
