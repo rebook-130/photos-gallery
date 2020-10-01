@@ -1,3 +1,6 @@
+/* eslint-disable consistent-return */
+/* eslint-disable class-methods-use-this */
+/* eslint-disable react/destructuring-assignment */
 /* eslint-disable import/extensions */
 import React from 'react';
 import axios from 'axios';
@@ -75,41 +78,43 @@ class App extends React.Component {
   }
 
   sendSaveName(roomId, name) {
-    console.log('App update save name and about to send axios')
-
+    console.log('App update save name and about to send axios');
   }
 
   renderView() {
-    const isLoaded = this.state.isLoaded;
-    const clickedPhotoIndex = this.state.clickedPhotoIndex;
-    const showModal= this.state.showModal;
+    const { isLoaded } = this.state;
+    const { clickedPhotoIndex } = this.state;
+    const { showModal } = this.state;
     const { imageList, imgDescriptionListimgDescriptionList, isSaved } = this.state.data;
 
     if (!isLoaded) {
       return (
         <div className={styles.spinner}>
-          <div className={styles.bounce1}></div>
-          <div className={styles.bounce2}></div>
-          <div className={styles.bounce3}></div>
+          <div className={styles.bounce1} />
+          <div className={styles.bounce2} />
+          <div className={styles.bounce3} />
         </div>
-      )
+      );
     }
     // When clicking each photo, a modal will show up
     if (showModal) {
       return (
-        <ModalImages data={this.state.data} clickedPhotoIndex={this.state.clickedPhotoIndex}
-        closeModalHandler={this.closeModalHandler}
-        sendSaveName={this.sendSaveName}/>
-      )
+        <ModalImages
+          data={this.state.data}
+          clickedPhotoIndex={this.state.clickedPhotoIndex}
+          closeModalHandler={this.closeModalHandler}
+          sendSaveName={this.sendSaveName}
+        />
+      );
     }
 
     if (imageList.length >= 5) {
       return (
         <div className={styles.bodyContainer}>
-          <Header data={this.state.data} sendSaveName={this.sendSaveName}/>
+          <Header data={this.state.data} sendSaveName={this.sendSaveName} />
           <PhotoGallery data={this.state.data} getClickedPhoto={this.getClickedPhoto} />
         </div>
-      )
+      );
     }
   }
 

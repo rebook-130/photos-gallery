@@ -1,3 +1,5 @@
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable react/no-unused-state */
 import React from 'react';
 import styles from '../styles/SavePopup.css';
 
@@ -18,7 +20,7 @@ class SavePopup extends React.Component {
     return (
       <div className={styles.backdrop}>
         <form className={styles.modalMain} onSubmit={this.handleSubmit}>
-        {/* {console.log('SavePopup render-this.props', this.props)} */}
+          {/* {console.log('SavePopup render-this.props', this.props)} */}
           <div> Save to a list </div>
           <hr />
           <input type="text" placeholder="name" />
