@@ -16,7 +16,7 @@ class Header extends React.Component {
     super(props);
     this.state = {
       openSaveModal: false,
-      isSaved: false,
+      isSaved: this.props.data.isSaved,
 
     };
     this.clickSaveHandler = this.clickSaveHandler.bind(this);
@@ -36,6 +36,7 @@ class Header extends React.Component {
       this.setState({
         isSaved: !this.state.isSaved,
       });
+      // update isSaved - case_1: already saved and cancel the save
     }
   }
 
@@ -43,9 +44,7 @@ class Header extends React.Component {
     this.setState({
       openSaveModal: false,
     });
-
   }
-
 
   isSuperhost() {
     if (this.props.data.isSuperhost) {
@@ -111,8 +110,11 @@ class Header extends React.Component {
             openSaveModal={this.state.openSaveModal}
             closeSaveModal={this.closeSaveModal}
             roomId={this.props.data.room_id}
-            sendId={this.props.data.saveId}
-            sendSaveName={this.props.sendSaveName}/>
+            isSaved={this.props.data.isSaved}
+            saveId={this.props.data.saveId}
+            sendSaveName={this.props.sendSaveName}
+            data={this.props.data}
+            />
         </div>
       </div>
     );

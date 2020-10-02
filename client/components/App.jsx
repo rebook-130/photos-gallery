@@ -26,11 +26,13 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.getPhotoGallery();
+    // grab the roomId from typed address in the web
+    const roomId = window.location.pathname.split('/')[2];
+    this.getPhotoGallery(roomId);
   }
 
-  getPhotoGallery() {
-    axios.get('/api/photogallery/1')
+  getPhotoGallery(roomId) {
+    axios.get(`/api/photogallery/${roomId}`)
       .then(({ data }) => {
         console.log('data in axios get req', data);
         const imgUrlList = [];
@@ -77,7 +79,7 @@ class App extends React.Component {
     console.log('App update save name and about to send axios, roomId & saveId & name', roomId, saveId, name);
 
     axios.put(`/api/photogallery/${roomId}`, {
-      saveId: saveId,
+      saveId,
       saveName: name,
       isSaved: true,
     })
@@ -89,8 +91,6 @@ class App extends React.Component {
         console.log('err on axios update:', err);
       });
   }
-
-
 
   closeModalHandler(value) {
     this.setState({

@@ -8,16 +8,13 @@ const port = 3001;
 const db = require('../database/index.js'); // connect db to server
 const Gallery = require('../database/Gallery.js');
 
-app.use('/', express.static(path.join(__dirname, '../public')));
+app.use('/photogallery/:askEric', express.static(path.join(__dirname, '/../public')));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 
-app.get('/', (req, res) => {
-  res.send('Hello app.get!');
-});
-
-app.get('/api/photogallery/:roomId', (req, res) => {
-  // console.log('req.params', req.params.roomId);
+// app.get('/api/photogallery/:roomId', (req, res) => {
+  app.get('/api/photogallery/:roomId', (req, res) => {
+  console.log('req.params', req.params.roomId);
   const { roomId } = req.params;
 
   Gallery.find({ room_id: roomId })

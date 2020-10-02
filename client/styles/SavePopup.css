@@ -49,6 +49,7 @@
   background: rgba(172, 170, 170, 0.1)
 }
 
+
 .modalTitle {
   /* display:flex; */
   font-family: Circular, -apple-system, system-ui, Roboto, "Helvetica Neue", sans-serif;
@@ -58,17 +59,57 @@
   margin: auto;
 }
 
+.modalSavedContentsArea {
+  display: flex;
+  /* align-items:center; */
+  justify-content: left;
+
+}
+
+.savedMainPhoto {
+  width: 68px;
+  height: 68px;
+  padding: 20px;
+  border-radius: 30%;
+}
+
+.savedInfoContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  padding-top: 30px
+}
+
+.anytime {
+  font: 12px lightgray;
+  font-family: 'Montserrat', sans-serif;
+  color: #4d4b4b71;
+}
+.saveName {
+  font: 16px;
+  font-family: 'Montserrat', sans-serif;
+  color: #222222;
+  padding-top: 0px;
+}
+
+.saveExtraInfo {
+  font: 14px;
+  color: #222222;
+  font-family: 'Montserrat', sans-serif;
+}
+
 
 .createAListBtn {
   cursor: pointer;
-  font-family: 'Montserrat', sans-serif;
+  font-family: Circular, -apple-system, system-ui, Roboto, "Helvetica Neue", sans-serif;
   font-weight: 450;
   font-size: 14px;
   width: 500px;
-  color: #55545471;
-  background-color: rgba(122, 126, 126, 0.3);
+  color: white;
+  background-color: #55545471;
   padding: 14px 22px;
   margin-right: 12px;
+  margin-top: 50px;
   border-radius: 8px;
   border-style: none;
   text-decoration: underline;

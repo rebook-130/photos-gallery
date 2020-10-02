@@ -10,6 +10,7 @@ class SavePopup extends React.Component {
     super(props);
     this.state = {
       // eslint-disable-next-line react/prop-types
+      isSaved: this.props.isSaved,
       openSaveInnerModal: false,
       name: '',
     };
@@ -32,7 +33,6 @@ class SavePopup extends React.Component {
     this.setState({
       openSaveInnerModal: true,
     });
-
   }
 
   closeInnerSaveModal() {
@@ -45,14 +45,17 @@ class SavePopup extends React.Component {
     console.log('e.target.value', e.target.value);
     const savedName = e.target.value;
     this.setState({
-      name: savedName
+      name: savedName,
     });
   }
 
   handleSubmit() {
+    //  update isSaved - case_2: never saved yet, trying to create new save list
+    //  update isSaved - case_3: already save in the list, when clicked, => 1 stay
     this.props.sendSaveName(this.props.roomId, this.props.saveId, this.state.name);
     this.setState({
       openSaveInnerModal: false,
+      isSaved: true,
     });
     this.props.closeSaveModal();
   }
@@ -73,9 +76,9 @@ class SavePopup extends React.Component {
             <button onClick={this.closeInnerSaveModal} className={styles.closeBtn}>X</button>
             <div className={styles.modalTitle}>Name this list</div>
           </div>
-          <input type="text" value={this.state.name} onChange={this.saveNameHandler} placeholder="Name" className={styles.saveNameInput}/>
+          <input type="text" value={this.state.name} onChange={this.saveNameHandler} placeholder="Name" className={styles.saveNameInput} />
 
-          <input type="submit" value="Create" className={styles.createAListBtn}/>
+          <input type="submit" value="Create" className={styles.createAListBtn} />
         </form>
       );
     } else {
@@ -93,7 +96,17 @@ class SavePopup extends React.Component {
 
           </div>
           <hr />
-          <div className={styles.modalSavedArea} />
+            {this.state.isSaved
+            ?
+              <div className={styles.modalSavedContentsArea}>
+                <img className={styles.savedMainPhoto} src={this.props.data.imageList[0]}/>
+                <div className={styles.savedInfoContainer}>
+                  <span className={styles.anytime}>Any time</span><br />
+                  <span className={styles.saveName}>Name: {this.props.data.savedName}</span>
+                  <span className={styles.saveExtraInfo}>{this.state.isSaved ?'1 stay' : 'Nothing saved yet'}</span>
+                </div>
+              </div>
+            : null}
           <hr />
           <button className={styles.createAListBtn} onClick={this.openInnerSaveModalHandler}>Create a list</button>
           {saveInnerModal}
