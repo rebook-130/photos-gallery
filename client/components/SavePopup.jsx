@@ -18,7 +18,8 @@ class SavePopup extends React.Component {
     this.openInnerSaveModalHandler = this.openInnerSaveModalHandler.bind(this);
     this.closeInnerSaveModal = this.closeInnerSaveModal.bind(this);
     this.saveNameHandler = this.saveNameHandler.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.saveHandleSubmit = this.saveHandleSubmit.bind(this);
+    this.cancelSaveHandler = this.cancelSaveHandler.bind(this);
   }
 
   closeSaveModal() {
@@ -29,10 +30,10 @@ class SavePopup extends React.Component {
     e.preventDefault();
     console.log('openInnerSaveModalHandler clicked');
 
-    // this.props.closeSaveModal();
     this.setState({
       openSaveInnerModal: true,
     });
+    // this.closeSaveModal();
   }
 
   closeInnerSaveModal() {
@@ -49,13 +50,24 @@ class SavePopup extends React.Component {
     });
   }
 
-  handleSubmit() {
-    //  update isSaved - case_2: never saved yet, trying to create new save list
-    //  update isSaved - case_3: already save in the list, when clicked, => 1 stay
-    this.props.sendSaveName(this.props.roomId, this.props.saveId, this.state.name);
+  saveHandleSubmit() {
+    //  update isSaved - case_2: never saved yet, trying to create or change save category name
+    this.props.updateSaveName(this.props.roomId, this.state.name, true);
+
     this.setState({
-      openSaveInnerModal: false,
       isSaved: true,
+      openSaveInnerModal: false,
+    });
+
+    this.props.closeSaveModal();
+  }
+
+  cancelSaveHandler() {
+    this.props.updateSaveName(this.props.roomId, '', false);
+
+    this.setState({
+      isSaved: false,
+      openSaveInnerModal: false,
     });
     this.props.closeSaveModal();
   }
@@ -71,14 +83,16 @@ class SavePopup extends React.Component {
 
     if (this.state.openSaveInnerModal) {
       saveInnerModal = (
-        <form onSubmit={this.handleSubmit} className={styles.innerModalMain}>
+        <form onSubmit={this.saveHandleSubmit} className={styles.innerModalMain}>
           <div className={styles.header}>
             <button onClick={this.closeInnerSaveModal} className={styles.closeBtn}>X</button>
             <div className={styles.modalTitle}>Name this list</div>
           </div>
-          <input type="text" value={this.state.name} onChange={this.saveNameHandler} placeholder="Name" className={styles.saveNameInput} />
+          <input type="text" value={this.state.name} onChange={this.saveNameHandler}
+            placeholder="Name" className={styles.saveNameInput} />
+          <div className={styles.letterLimit}>50 characters maximum</div>
 
-          <input type="submit" value="Create" className={styles.createAListBtn} />
+          <input type="submit" value="Create" className={styles.innerModalCreateBtn} />
         </form>
       );
     } else {
@@ -95,20 +109,25 @@ class SavePopup extends React.Component {
             <div className={styles.modalTitle}> Save to a list </div>
 
           </div>
-          <hr />
+          <hr className={styles.horizontalLine}/>
             {this.state.isSaved
             ?
               <div className={styles.modalSavedContentsArea}>
                 <img className={styles.savedMainPhoto} src={this.props.data.imageList[0]}/>
                 <div className={styles.savedInfoContainer}>
                   <span className={styles.anytime}>Any time</span><br />
-                  <span className={styles.saveName}>Name: {this.props.data.savedName}</span>
-                  <span className={styles.saveExtraInfo}>{this.state.isSaved ?'1 stay' : 'Nothing saved yet'}</span>
+                  <span className={styles.saveName}>{this.props.data.savedName}</span>
                 </div>
               </div>
             : null}
-          <hr />
-          <button className={styles.createAListBtn} onClick={this.openInnerSaveModalHandler}>Create a list</button>
+          <hr className={styles.horizontalLine}/>
+          <button className={styles.createSaveBtn}
+            onClick={this.openInnerSaveModalHandler}>Create/Change a category</button>
+
+            {this.state.isSaved ?
+          <button className={styles.unsaveBtn}
+            onClick={this.cancelSaveHandler}>Unsave</button> :
+            null}
           {saveInnerModal}
         </div>
       </div>

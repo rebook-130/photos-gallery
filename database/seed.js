@@ -73,7 +73,7 @@ const photos = [
     'https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_sf_047.jpg',
     'https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_sf_048.jpg',
     'https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_sf_049.jpg',
-  ]
+  ],
 ];
 
 // main three sets
@@ -100,11 +100,11 @@ const getImgUrlnDescriptionList = () => {
   return imageUrlList;
 };
 
-const getSavednName = () => {
-  const randomBoolean = faker.random.boolean();
-  const savedName = randomBoolean === true ? faker.address.city() : '';
-  return { isSaved: randomBoolean, name: savedName };
-};
+// const getSavednName = () => {
+//   const randomBoolean = faker.random.boolean();
+//   const savedName = randomBoolean === true ? faker.address.city() : '';
+//   return { isSaved: randomBoolean, savedName: savedName };
+// };
 
 const makePhotoGallerysData = (num) => {
   const numOfPhotoGallerys = num || 1;
@@ -120,7 +120,8 @@ const makePhotoGallerysData = (num) => {
       number_of_reviews: getNumberOfReviews(),
       isSuperhost: true,
       address: address[i],
-      save_status: getSavednName(),
+      isSaved: false,
+      savedName: '',
       room_photos: getMainImgUrlnDescriptionList(i),
     };
     photoGallerys.push(photogallery);
@@ -136,7 +137,8 @@ const makePhotoGallerysData = (num) => {
       number_of_reviews: getNumberOfReviews(),
       isSuperhost: true,
       address: getRandomAddress(),
-      save_status: getSavednName(),
+      isSaved: false,
+      savedName: '',
       room_photos: getImgUrlnDescriptionList(),
     };
     photoGallerys.push(photogallery);

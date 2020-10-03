@@ -16,17 +16,18 @@ class App extends React.Component {
       data: {},
       isLoaded: false,
       clickedPhotoIndex: -1,
-      showModal: false,
+      showModalImages: false,
     };
     this.getPhotoGallery = this.getPhotoGallery.bind(this);
     this.renderView = this.renderView.bind(this);
-    this.getClickedPhoto = this.getClickedPhoto.bind(this);
+    this.openModalImages = this.openModalImages.bind(this);
     this.closeModalHandler = this.closeModalHandler.bind(this);
-    this.sendSaveName = this.sendSaveName.bind(this);
+
+    this.updateSaveName = this.updateSaveName.bind(this);
   }
 
   componentDidMount() {
-    // grab the roomId from typed address in the web
+    // http://localhost:3001/photogallery/1/
     const roomId = window.location.pathname.split('/')[2];
     this.getPhotoGallery(roomId);
   }
@@ -49,9 +50,8 @@ class App extends React.Component {
           number_of_reviews: data[0].number_of_reviews,
           isSuperhost: data[0].isSuperhost,
           address: data[0].address,
-          isSaved: data[0].save_status[0].isSaved,
-          savedName: data[0].save_status[0].name,
-          saveId: data[0].save_status[0]._id,
+          isSaved: data[0].isSaved,
+          savedName: data[0].savedName,
           imageList: imgUrlList,
           imgDescriptionList: descriptionList,
         };
@@ -66,27 +66,24 @@ class App extends React.Component {
       });
   }
 
-  getClickedPhoto(idx) {
-    console.log('app getClickedPhoto-idx', idx);
+  openModalImages(idx) {
+    console.log('app openModalImages-idx', idx);
     this.setState({
       clickedPhotoIndex: idx,
-      showModal: true,
+      showModalImages: true,
     });
   }
 
-  // Update save name & isSaved
-  sendSaveName(roomId, saveId, name) {
-    console.log('App update save name and about to send axios, roomId & saveId & name', roomId, saveId, name);
-
-    axios.put(`/api/photogallery/${roomId}`, {
-      saveId,
-      saveName: name,
-      isSaved: true,
+  // PUT - Update existing save name & isSaved
+  updateSaveName(room_id, name, boolean) {
+    axios.patch(`/api/photogallery/${room_id}`, {
+      name,
+      isSaved: boolean,
     })
-      // .then((res) => {
-      //   console.log('App Update save name Succes', res);
-      // })
-      .then(this.getPhotoGallery)
+      .then(() => {
+        const roomId = window.location.pathname.split('/')[2];
+        this.getPhotoGallery(roomId);
+      })
       .catch((err) => {
         console.log('err on axios update:', err);
       });
@@ -94,14 +91,14 @@ class App extends React.Component {
 
   closeModalHandler(value) {
     this.setState({
-      showModal: false,
+      showModalImages: false,
     });
   }
 
   renderView() {
     const { isLoaded } = this.state;
     const { clickedPhotoIndex } = this.state;
-    const { showModal } = this.state;
+    const { showModalImages } = this.state;
     const { imageList, imgDescriptionListimgDescriptionList, isSaved } = this.state.data;
 
     if (!isLoaded) {
@@ -114,13 +111,13 @@ class App extends React.Component {
       );
     }
     // When clicking each photo, a modal will show up
-    if (showModal) {
+    if (showModalImages) {
       return (
         <ModalImages
           data={this.state.data}
           clickedPhotoIndex={this.state.clickedPhotoIndex}
           closeModalHandler={this.closeModalHandler}
-          sendSaveName={this.sendSaveName}
+          updateSaveName={this.updateSaveName}
         />
       );
     }
@@ -128,14 +125,21 @@ class App extends React.Component {
     if (imageList.length >= 5) {
       return (
         <div className={styles.bodyContainer}>
-          <Header data={this.state.data} sendSaveName={this.sendSaveName} saveId={this.state.data.saveId}/>
-          <PhotoGallery data={this.state.data} getClickedPhoto={this.getClickedPhoto} />
+          <Header
+            data={this.state.data}
+            createNewSaveName={this.updateSaveName}
+            updateSaveName={this.updateSaveName}
+          />
+          <PhotoGallery
+            data={this.state.data}
+            openModalImages={this.openModalImages}
+          />
         </div>
       );
     }
   }
 
-  // main render()
+  // Main render()
   render() {
     return this.renderView();
   }

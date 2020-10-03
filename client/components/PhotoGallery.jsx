@@ -24,23 +24,23 @@ class PhotoGallery extends React.Component {
 
   photo0Clicked() {
     console.log('photo0 or show all photos clicked');
-    this.props.getClickedPhoto(0);
+    this.props.openModalImages(0);
   }
 
   photo1Clicked() {
-    this.props.getClickedPhoto(1);
+    this.props.openModalImages(1);
   }
 
   photo2Clicked() {
-    this.props.getClickedPhoto(2);
+    this.props.openModalImages(2);
   }
 
   photo3Clicked() {
-    this.props.getClickedPhoto(3);
+    this.props.openModalImages(3);
   }
 
   photo4Clicked() {
-    this.props.getClickedPhoto(4);
+    this.props.openModalImages(4);
   }
 
   render() {

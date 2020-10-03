@@ -8,18 +8,20 @@ const port = 3001;
 const db = require('../database/index.js'); // connect db to server
 const Gallery = require('../database/Gallery.js');
 
-app.use('/photogallery/:askEric', express.static(path.join(__dirname, '/../public')));
+app.use('/photogallery/:roomId', express.static(path.join(__dirname, '/../public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// app.get('/api/photogallery/:roomId', (req, res) => {
-  app.get('/api/photogallery/:roomId', (req, res) => {
-  console.log('req.params', req.params.roomId);
+// GET request
+app.get('/api/photogallery/:roomId', (req, res) => {
+  // console.log('req.params', req.params);
+  // console.log('req.params.roomId', req.params.roomId);
+  // console.log('req.params.roomId[0]', req.params.roomId[0]);
   const { roomId } = req.params;
 
   Gallery.find({ room_id: roomId })
     .then((response) => {
-      console.log('SERVER GET GALLERY SUCCESS', response);
+      console.log('SERVER GET GALLERY SUCCESS');
       res.status(200).send(response);
     })
     .catch((err) => {
@@ -28,22 +30,23 @@ app.use(bodyParser.urlencoded({ extended: false }));
     });
 });
 
-app.put('/api/photogallery/:roomId', (req, res) => {
-  // console.log('req.params', req.params.roomId);
-  console.log('req.body', req.body);
-  const { roomId } = req.params;
-  const { saveId, savedName, isSaved } = req.body;
+// PUT - update
+app.patch('/api/photogallery/:roomId', (req, res) => {
+  const room_id = req.params.roomId;
+  const { name, isSaved } = req.body;
+  console.log('req.params', req.params);
+  console.log('room_Id', room_id);
+  console.log('name, isSaved', name, isSaved);
 
-  const filter = { 'room_id': roomId, 'save_status.$._id': saveId };
   const updateContents = {
     $set: {
-      'save_status.$.name': savedName,
-      'save_status.$.isSaved': isSaved,
+      'savedName': name,
+      'isSaved': isSaved,
     },
   };
 
   // Gallery.updateOne(filter, updateContents)
-  Gallery.findOneAndUpdate(filter, updateContents, { new: true })
+  Gallery.findOneAndUpdate({'room_id': room_id}, updateContents)
     .then((response) => {
       console.log('SERVER UPDATE SAVE SUCCESS', response);
       res.status(200).send(response);

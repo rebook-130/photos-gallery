@@ -24,19 +24,18 @@ class Header extends React.Component {
     this.isSuperhost = this.isSuperhost.bind(this);
   }
 
-  clickSaveHandler(room_id) {
-    { console.log('clickSave in Header-room_id', room_id); }
-
+  clickSaveHandler() {
     if (!this.state.isSaved) {
       this.setState({
         openSaveModal: true,
         // isSaved: !this.state.isSaved,
       });
     } else {
+      // if this listing is already saved => cancel save (update req)
       this.setState({
         isSaved: !this.state.isSaved,
       });
-      // update isSaved - case_1: already saved and cancel the save
+      this.props.updateSaveName(this.props.data.room_id, '', false);
     }
   }
 
@@ -101,20 +100,19 @@ class Header extends React.Component {
               this.clickSaveHandler(this.props.data.room_id);
             }}
           >
-            {this.state.isSaved ? <img className={styles.saveIcon} src={savedHeartSvg} />
+            {this.props.data.isSaved ? <img className={styles.saveIcon} src={savedHeartSvg} />
               : <img className={styles.saveIcon} src={saveHeartSvg} /> }
-            {' '}
-            {this.state.isSaved ? 'Saved' : 'Save'}
+            {/* {' '} */}
+            {this.props.data.isSaved ? 'Saved' : 'Save'}
           </button>
           <SavePopup
             openSaveModal={this.state.openSaveModal}
             closeSaveModal={this.closeSaveModal}
             roomId={this.props.data.room_id}
             isSaved={this.props.data.isSaved}
-            saveId={this.props.data.saveId}
-            sendSaveName={this.props.sendSaveName}
+            updateSaveName={this.props.updateSaveName}
             data={this.props.data}
-            />
+          />
         </div>
       </div>
     );
