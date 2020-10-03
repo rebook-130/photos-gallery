@@ -1,9 +1,3 @@
-/* .WrapperOuter {
-  display: block;
-  box-sizing: border-box;
-} */
-
-
 .Wrapper {
   display: flex;
   align-items: stretch;
@@ -36,8 +30,6 @@
 
   object-fit: cover;
   border-radius: 12px 0px 0px 12px;
-  /* padding: 0px 0px 0px 8px; */
-
 }
 
 .imageContainer:hover {

@@ -4,14 +4,39 @@
 
 ## Related Projects
 
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
+  - https://github.com/Bookable-130/photo-gallery-service
+  - https://github.com/Bookable-130/calendar-service
+  - https://github.com/Bookable-130/review-service
+  - https://github.com/Bookable-130/more-places-service
 
 ## Table of Contents
 
 1. [Usage](#Usage)
+
+API End point - GET: ‘/api/photogallery/:roomId’
+
+Output (Data shape):
+
+{
+    "_id": "5f6e2d5342753d11d03945e6",
+    "user_id": 1,
+    "room_id": 1,
+    "title": "Civic Center Studio With Parking",
+    "ratings": 4.2,
+    "number_of_reviews": 169,
+    “isSuperhost”: true,
+    "address": "San Francisco, California, United States",
+    "isSaved": false,
+    "savedName": “”,
+
+    "room_photos": [
+        {
+            "_id": "5f6e2d5342753d11d03945e8",
+            "imageUrl": "https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_031.jpg",
+            "description": "voluptate"
+        },...
+}
+
 1. [Requirements](#requirements)
 1. [Development](#development)
 
