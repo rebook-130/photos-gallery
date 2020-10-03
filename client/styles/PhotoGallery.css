@@ -99,8 +99,9 @@
 
 .morePicButton:hover {
   background: rgb(243, 239, 239);
-
 }
+
+.morePicButton:focus {outline:0;}
 
 .Image4 {
   cursor: pointer;

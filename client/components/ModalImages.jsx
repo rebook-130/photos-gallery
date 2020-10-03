@@ -1,3 +1,8 @@
+/* eslint-disable max-len */
+/* eslint-disable react/prop-types */
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable react/button-has-type */
+/* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import styles from '../styles/ModalImages.css';
 import prevSvg from '../icons/prevBtn.svg';
@@ -24,36 +29,48 @@ class ModalImages extends React.Component {
 
   prevBtnHandler() {
     this.setState({
-      currentPhotoIdx: this.state.currentPhotoIdx - 1
+      currentPhotoIdx: this.state.currentPhotoIdx - 1,
     });
   }
 
   nextBtnHandler() {
     console.log('next button clicked');
     this.setState({
-      currentPhotoIdx: this.state.currentPhotoIdx + 1
+      currentPhotoIdx: this.state.currentPhotoIdx + 1,
     });
   }
 
   clickSaveHandler() {
     this.setState({
-      isSaved: !this.state.isSaved
-    })
+      isSaved: !this.state.isSaved,
+    });
   }
 
   render() {
     // conditional rendering
     let prevBtn;
-    const currentPhotoIdx = this.state.currentPhotoIdx;
+    const { currentPhotoIdx } = this.state;
     if (currentPhotoIdx > 0) {
-    prevBtn = <button className={styles.prevBtn} onClick={this.prevBtnHandler}> <img className={styles.prevNextIcon} src={prevSvg}/> </button>
+      prevBtn = (
+        <button className={styles.prevBtn} onClick={this.prevBtnHandler}>
+          {' '}
+          <img className={styles.prevNextIcon} src={prevSvg} />
+          {' '}
+        </button>
+      );
     } else {
       prevBtn = null;
     }
 
     let nextBtn;
     if (currentPhotoIdx < this.props.data.imageList.length - 1) {
-      nextBtn = <button className={styles.nextBtn} onClick={this.nextBtnHandler}> <img className={styles.prevNextIcon} src={nextSvg}/> </button>
+      nextBtn = (
+        <button className={styles.nextBtn} onClick={this.nextBtnHandler}>
+          {' '}
+          <img className={styles.prevNextIcon} src={nextSvg} />
+          {' '}
+        </button>
+      );
     } else {
       nextBtn = null;
     }
@@ -61,28 +78,37 @@ class ModalImages extends React.Component {
     return (
       <div>
         {console.log('props in ModalImages', this.props)}
-        <div className={ styles.headerModal }>
+        <div className={styles.headerModal}>
           <button className={styles.closeBtn} onClick={this.closeModal}>X Close</button>
-          <div className={styles.photoNum}>{this.state.currentPhotoIdx + 1} / {this.props.data.imageList.length}</div>
+          <div className={styles.photoNum}>
+            {this.state.currentPhotoIdx + 1}
+            {' '}
+            /
+            {' '}
+            {this.props.data.imageList.length}
+          </div>
 
-        {/* SAVE  */}
-          <button className={ styles.saveHeartBtn} onClick={this.clickSaveHandler}>
-            {this.state.isSaved ? <img className={styles.saveIcon} src={savedHeartSvg}/> :
-            <img className={styles.saveIcon} src={saveHeartSvg} /> }
-            </button>
+          {/* SAVE  */}
+          <button className={styles.saveHeartBtn} onClick={this.clickSaveHandler}>
+            {this.state.isSaved ? <img className={styles.saveIcon} src={savedHeartSvg} />
+              : <img className={styles.saveIcon} src={saveHeartSvg} /> }
+          </button>
         </div>
 
         <div className={styles.bodyModal}>
           {prevBtn}
           <div className={styles.containerImgCaption}>
             <img className={styles.photoList} src={this.props.data.imageList[this.state.currentPhotoIdx]} />
-            <span className={ styles.caption }> { this.props.data.imgDescriptionList[currentPhotoIdx] }</span>
+            <span className={styles.caption}>
+              {' '}
+              { this.props.data.imgDescriptionList[currentPhotoIdx] }
+            </span>
           </div>
           {nextBtn}
 
         </div>
       </div>
-    )
+    );
   }
 }
 

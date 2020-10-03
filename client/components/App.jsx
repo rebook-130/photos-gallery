@@ -1,3 +1,6 @@
+/* eslint-disable consistent-return */
+/* eslint-disable class-methods-use-this */
+/* eslint-disable react/destructuring-assignment */
 /* eslint-disable import/extensions */
 import React from 'react';
 import axios from 'axios';
@@ -13,21 +16,24 @@ class App extends React.Component {
       data: {},
       isLoaded: false,
       clickedPhotoIndex: -1,
-      showModal: false,
+      showModalImages: false,
     };
     this.getPhotoGallery = this.getPhotoGallery.bind(this);
     this.renderView = this.renderView.bind(this);
-    this.getClickedPhoto = this.getClickedPhoto.bind(this);
+    this.openModalImages = this.openModalImages.bind(this);
     this.closeModalHandler = this.closeModalHandler.bind(this);
-    this.sendSaveName = this.sendSaveName.bind(this);
+
+    this.updateSaveName = this.updateSaveName.bind(this);
   }
 
   componentDidMount() {
-    this.getPhotoGallery();
+    // http://localhost:3001/photogallery/1/
+    const roomId = window.location.pathname.split('/')[2];
+    this.getPhotoGallery(roomId);
   }
 
-  getPhotoGallery() {
-    axios.get('/api/photogallery/1')
+  getPhotoGallery(roomId) {
+    axios.get(`/api/photogallery/${roomId}`)
       .then(({ data }) => {
         console.log('data in axios get req', data);
         const imgUrlList = [];
@@ -44,8 +50,8 @@ class App extends React.Component {
           number_of_reviews: data[0].number_of_reviews,
           isSuperhost: data[0].isSuperhost,
           address: data[0].address,
-          isSaved: data[0].save_status[0].isSaved,
-          savedName: data[0].save_status[0].name,
+          isSaved: data[0].isSaved,
+          savedName: data[0].savedName,
           imageList: imgUrlList,
           imgDescriptionList: descriptionList,
         };
@@ -60,60 +66,80 @@ class App extends React.Component {
       });
   }
 
-  getClickedPhoto(idx) {
-    console.log('app getClickedPhoto-idx', idx);
+  openModalImages(idx) {
+    console.log('app openModalImages-idx', idx);
     this.setState({
       clickedPhotoIndex: idx,
-      showModal: true,
+      showModalImages: true,
     });
+  }
+
+  // PUT - Update existing save name & isSaved
+  updateSaveName(room_id, name, boolean) {
+    axios.patch(`/api/photogallery/${room_id}`, {
+      name,
+      isSaved: boolean,
+    })
+      .then(() => {
+        const roomId = window.location.pathname.split('/')[2];
+        this.getPhotoGallery(roomId);
+      })
+      .catch((err) => {
+        console.log('err on axios update:', err);
+      });
   }
 
   closeModalHandler(value) {
     this.setState({
-      showModal: false,
+      showModalImages: false,
     });
   }
 
-  sendSaveName(roomId, name) {
-    console.log('App update save name and about to send axios')
-
-  }
-
   renderView() {
-    const isLoaded = this.state.isLoaded;
-    const clickedPhotoIndex = this.state.clickedPhotoIndex;
-    const showModal= this.state.showModal;
+    const { isLoaded } = this.state;
+    const { clickedPhotoIndex } = this.state;
+    const { showModalImages } = this.state;
     const { imageList, imgDescriptionListimgDescriptionList, isSaved } = this.state.data;
 
     if (!isLoaded) {
       return (
         <div className={styles.spinner}>
-          <div className={styles.bounce1}></div>
-          <div className={styles.bounce2}></div>
-          <div className={styles.bounce3}></div>
+          <div className={styles.bounce1} />
+          <div className={styles.bounce2} />
+          <div className={styles.bounce3} />
         </div>
-      )
+      );
     }
     // When clicking each photo, a modal will show up
-    if (showModal) {
+    if (showModalImages) {
       return (
-        <ModalImages data={this.state.data} clickedPhotoIndex={this.state.clickedPhotoIndex}
-        closeModalHandler={this.closeModalHandler}
-        sendSaveName={this.sendSaveName}/>
-      )
+        <ModalImages
+          data={this.state.data}
+          clickedPhotoIndex={this.state.clickedPhotoIndex}
+          closeModalHandler={this.closeModalHandler}
+          updateSaveName={this.updateSaveName}
+        />
+      );
     }
 
     if (imageList.length >= 5) {
       return (
         <div className={styles.bodyContainer}>
-          <Header data={this.state.data} sendSaveName={this.sendSaveName}/>
-          <PhotoGallery data={this.state.data} getClickedPhoto={this.getClickedPhoto} />
+          <Header
+            data={this.state.data}
+            createNewSaveName={this.updateSaveName}
+            updateSaveName={this.updateSaveName}
+          />
+          <PhotoGallery
+            data={this.state.data}
+            openModalImages={this.openModalImages}
+          />
         </div>
-      )
+      );
     }
   }
 
-  // main render()
+  // Main render()
   render() {
     return this.renderView();
   }

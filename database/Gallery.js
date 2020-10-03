@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-// const db = require('./index.js');
 
 const gallerySchema = new mongoose.Schema({
   user_id: Number,
@@ -9,10 +8,8 @@ const gallerySchema = new mongoose.Schema({
   number_of_reviews: Number,
   isSuperhost: Boolean,
   address: String,
-  save_status: [{
-    isSaved: Boolean,
-    name: String,
-  }],
+  isSaved: Boolean,
+  savedName: String,
   room_photos: [{ imageUrl: String, description: String }],
 });
 
