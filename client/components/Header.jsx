@@ -9,41 +9,46 @@ import starImg from '../icons/star.png';
 import superHostSvg from '../icons/superhost.svg';
 import saveHeartSvg from '../icons/saveHeart.svg';
 import savedHeartSvg from '../icons/savedHeart.svg';
-import SavePopup from './SavePopup.jsx';
+import SaveModal from './SaveModal.jsx';
 
 class Header extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      openSaveModal: false,
+      openSaveOuterModal: false,
       isSaved: this.props.data.isSaved,
 
     };
-    this.clickSaveHandler = this.clickSaveHandler.bind(this);
+    this.openSaveModalHandler = this.openSaveModalHandler.bind(this);
     this.closeSaveModal = this.closeSaveModal.bind(this);
+    // this.openSaveModalFn = this.openSaveModalFn.bind(this);
     this.isSuperhost = this.isSuperhost.bind(this);
   }
 
-  clickSaveHandler() {
-    if (!this.state.isSaved) {
-      this.setState({
-        openSaveModal: true,
-        // isSaved: !this.state.isSaved,
-      });
-    } else {
-      // if this listing is already saved => cancel save (update req)
+  openSaveModalHandler() {
+    if (this.state.isSaved) {
       this.setState({
         isSaved: !this.state.isSaved,
       });
       this.props.updateSaveName(this.props.data.room_id, '', false);
+    } else {
+      this.setState({
+        openSaveOuterModal: true,
+      });
     }
   }
 
   closeSaveModal() {
     this.setState({
-      openSaveModal: false,
+      openSaveOuterModal: false,
     });
   }
+
+  // openSaveModalFn() {
+  //   this.setState({
+  //     openSaveOuterModal: true,
+  //   });
+  // }
 
   isSuperhost() {
     if (this.props.data.isSuperhost) {
@@ -97,7 +102,7 @@ class Header extends React.Component {
           <button
             className={styles.saveHeartBtn}
             onClick={() => {
-              this.clickSaveHandler(this.props.data.room_id);
+              this.openSaveModalHandler();
             }}
           >
             {this.props.data.isSaved ? <img className={styles.saveIcon} src={savedHeartSvg} />
@@ -105,9 +110,10 @@ class Header extends React.Component {
             {/* {' '} */}
             {this.props.data.isSaved ? 'Saved' : 'Save'}
           </button>
-          <SavePopup
-            openSaveModal={this.state.openSaveModal}
+          <SaveModal
+            openSaveModalHandler={this.state.openSaveModalHandler}
             closeSaveModal={this.closeSaveModal}
+            openSaveOuterModal={this.state.openSaveOuterModal}
             roomId={this.props.data.room_id}
             isSaved={this.props.data.isSaved}
             updateSaveName={this.props.updateSaveName}
