@@ -1,3 +1,5 @@
+/* eslint-disable react/button-has-type */
+/* eslint-disable react/prop-types */
 /* eslint-disable max-len */
 /* eslint-disable class-methods-use-this */
 /* eslint-disable react/destructuring-assignment */
@@ -91,8 +93,13 @@ class SaveModal extends React.Component {
               <button onClick={this.closeXinnerSaveModal} className={styles.closeBtn}>X</button>
               <div className={styles.modalTitle}>Name this list</div>
             </div>
-            <input type="text" value={this.state.name} onChange={this.saveNameHandler}
-              placeholder="Name" className={styles.saveNameInput} />
+            <input
+              type="text"
+              value={this.state.name}
+              onChange={this.saveNameHandler}
+              placeholder="Name"
+              className={styles.saveNameInput}
+            />
             <div className={styles.letterLimit}>50 characters maximum</div>
 
             <input type="submit" value="Create" className={styles.innerModalCreateBtn} />
@@ -114,24 +121,36 @@ class SaveModal extends React.Component {
 
             </div>
             <hr className={styles.horizontalLine} />
-              {this.state.isSaved
-              ?
+            {this.state.isSaved
+              ? (
                 <div className={styles.modalSavedContentsArea}>
-                  <img className={styles.savedMainPhoto} src={this.props.data.imageList[0]}/>
+                  <img className={styles.savedMainPhoto} src={this.props.data.imageList[0]} />
                   <div className={styles.savedInfoContainer}>
-                    <span className={styles.anytime}>Any time</span><br />
+                    <span className={styles.anytime}>Any time</span>
+                    <br />
                     <span className={styles.saveName}>{this.props.data.savedName}</span>
                   </div>
                 </div>
+              )
               : null}
             <hr className={styles.horizontalLine} />
-            <button className={styles.createSaveBtn}
-              onClick={this.openInnerSaveModalHandler}>Create/Change a list</button>
+            <button
+              className={styles.createSaveBtn}
+              onClick={this.openInnerSaveModalHandler}
+            >
+              Create/Change a list
+            </button>
 
-              {this.state.isSaved ?
-            <button className={styles.unsaveBtn}
-              onClick={this.cancelSaveHandler}>Unsave</button> :
-              null}
+            {this.state.isSaved
+              ? (
+                <button
+                  className={styles.unsaveBtn}
+                  onClick={this.cancelSaveHandler}
+                >
+                  Unsave
+                </button>
+              )
+              : null}
           </div>
         </div>
         {saveInnerModal}

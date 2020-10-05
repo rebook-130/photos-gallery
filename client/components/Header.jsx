@@ -27,9 +27,9 @@ class Header extends React.Component {
 
   openSaveModalHandler() {
     if (this.state.isSaved) {
-      this.setState({
-        isSaved: !this.state.isSaved,
-      });
+      this.setState((prevState) => (
+        { isSaved: !prevState.isSaved }
+      ));
       this.props.updateSaveName(this.props.data.room_id, '', false);
     } else {
       this.setState({
@@ -43,12 +43,6 @@ class Header extends React.Component {
       openSaveOuterModal: false,
     });
   }
-
-  // openSaveModalFn() {
-  //   this.setState({
-  //     openSaveOuterModal: true,
-  //   });
-  // }
 
   isSuperhost() {
     if (this.props.data.isSuperhost) {
