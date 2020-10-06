@@ -56,7 +56,7 @@ From within the root directory:
 
 To run webpack
 ```sh
-npm run react-dev
+npm run build:dev
 ```
 
 To run server
