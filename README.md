@@ -52,6 +52,29 @@ An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
 
 ## Development
 
+From within the root directory:
+
+To run webpack
+```sh
+npm run react-dev
+```
+
+To run server
+```sh
+npm start
+npm run start:dev
+```
+
+To seed the database
+```sh
+npm run seed
+```
+
+To run tests
+```sh
+npm test
+```
+
 ### Installing Dependencies
 
 From within the root directory:
