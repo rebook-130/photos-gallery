@@ -12,6 +12,13 @@
 ## Table of Contents
 
 1. [Usage](#Usage)
+2. [Requirements](#requirements)
+3. [Development](#development)
+
+## Usage
+
+> Some usage instructions
+To render the page: http://localhost:3001/rooms/1
 
 API End point - GET: ‘/api/photogallery/:roomId’
 
@@ -36,13 +43,6 @@ Output (Data shape):
         },...
 }
 
-2. [Requirements](#requirements)
-3. [Development](#development)
-
-## Usage
-
-> Some usage instructions
-
 ## Requirements
 
 An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
@@ -61,7 +61,6 @@ npm run build:dev
 
 To run server
 ```sh
-npm start
 npm run start:dev
 ```
 

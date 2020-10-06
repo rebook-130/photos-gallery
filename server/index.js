@@ -8,7 +8,7 @@ const port = 3001;
 const db = require('../database/index.js'); // connect db to server
 const Gallery = require('../database/Gallery.js');
 
-app.use('/photogallery/:roomId', express.static(path.join(__dirname, '/../public')));
+app.use('/rooms/:roomId', express.static(path.join(__dirname, '/../public')));
 // app.use(express.static(__dirname + '/../public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
