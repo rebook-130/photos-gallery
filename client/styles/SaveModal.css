@@ -54,8 +54,8 @@
   height: 400px;
   min-height: 300px;
   background-color: white;
-  z-index: 2;
   border-radius: 10px 10px 10px 10px;
+  z-index: 2;
 }
 
 .header {

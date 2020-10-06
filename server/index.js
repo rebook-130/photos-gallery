@@ -9,14 +9,12 @@ const db = require('../database/index.js'); // connect db to server
 const Gallery = require('../database/Gallery.js');
 
 app.use('/photogallery/:roomId', express.static(path.join(__dirname, '/../public')));
+// app.use(express.static(__dirname + '/../public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // GET request
 app.get('/api/photogallery/:roomId', (req, res) => {
-  // console.log('req.params', req.params);
-  // console.log('req.params.roomId', req.params.roomId);
-  // console.log('req.params.roomId[0]', req.params.roomId[0]);
   const { roomId } = req.params;
 
   Gallery.find({ room_id: roomId })

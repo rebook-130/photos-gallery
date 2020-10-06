@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable camelcase */
 /* eslint-disable consistent-return */
 /* eslint-disable class-methods-use-this */
 /* eslint-disable react/destructuring-assignment */
@@ -89,7 +91,7 @@ class App extends React.Component {
       });
   }
 
-  closeModalHandler(value) {
+  closeModalHandler() {
     this.setState({
       showModalImages: false,
     });

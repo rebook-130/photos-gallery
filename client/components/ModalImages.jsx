@@ -24,26 +24,34 @@ class ModalImages extends React.Component {
   }
 
   closeModal() {
-    this.props.closeModalHandler(true);
+    this.props.closeModalHandler();
   }
 
   prevBtnHandler() {
-    this.setState({
-      currentPhotoIdx: this.state.currentPhotoIdx - 1,
-    });
+    this.setState((prevState) => (
+      { currentPhotoIdx: prevState.currentPhotoIdx - 1 }
+    ));
   }
 
   nextBtnHandler() {
-    console.log('next button clicked');
-    this.setState({
-      currentPhotoIdx: this.state.currentPhotoIdx + 1,
-    });
+    this.setState((prevState) => (
+      { currentPhotoIdx: prevState.currentPhotoIdx + 1 }
+    ));
   }
 
   clickSaveHandler() {
-    this.setState({
-      isSaved: !this.state.isSaved,
-    });
+    // if isSaved is true
+    if (this.state.isSaved) {
+      this.props.updateSaveName(this.props.data.room_id, this.props.data.savedName, false);
+      this.setState((prevState) => (
+        { isSaved: !prevState.isSaved }
+      ));
+    } else {
+      this.props.updateSaveName(this.props.data.room_id, this.props.data.savedName, true);
+      this.setState((prevState) => (
+        { isSaved: !prevState.isSaved }
+      ));
+    }
   }
 
   render() {

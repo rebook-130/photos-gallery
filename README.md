@@ -28,7 +28,6 @@ Output (Data shape):
     "address": "San Francisco, California, United States",
     "isSaved": false,
     "savedName": “”,
-
     "room_photos": [
         {
             "_id": "5f6e2d5342753d11d03945e8",
@@ -37,8 +36,8 @@ Output (Data shape):
         },...
 }
 
-1. [Requirements](#requirements)
-1. [Development](#development)
+2. [Requirements](#requirements)
+3. [Development](#development)
 
 ## Usage
 
@@ -52,6 +51,29 @@ An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
 - etc
 
 ## Development
+
+From within the root directory:
+
+To run webpack
+```sh
+npm run build:dev
+```
+
+To run server
+```sh
+npm start
+npm run start:dev
+```
+
+To seed the database
+```sh
+npm run seed
+```
+
+To run tests
+```sh
+npm test
+```
 
 ### Installing Dependencies
 
