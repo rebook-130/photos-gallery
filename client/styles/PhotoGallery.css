@@ -10,6 +10,7 @@
   position: relative;
   padding: 20px 0px 0px;
 
+
   /* page transition fade-in */
   -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
      -moz-animation: fadein 2s; /* Firefox < 16 */
@@ -63,7 +64,6 @@
   display: block;
   width: 560px;
   height: 395.59px;
-
   object-fit: cover;
   border-radius: 12px 0px 0px 12px;
 }

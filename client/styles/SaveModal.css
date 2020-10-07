@@ -1,6 +1,9 @@
 /* gray background for saveModal */
 .saveModalBackground {
-  position: absolute;
+  /* position: absolute; */
+  position: fixed;
+  overflow: hidden;
+  overflow-y: hidden;
   width: 100%;
   height: 100%;
   top: 0;
@@ -56,6 +59,7 @@
   background-color: white;
   border-radius: 10px 10px 10px 10px;
   z-index: 2;
+  box-sizing: border-box;
 }
 
 .header {

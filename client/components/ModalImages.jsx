@@ -83,8 +83,8 @@ class ModalImages extends React.Component {
     }
 
     return (
-      <div>
-        {console.log('props in ModalImages', this.props)}
+      <div className={styles.modalImagesContainer}>
+        {/* {console.log('props in ModalImages', this.props)} */}
         <div className={styles.headerModal}>
           <button className={styles.closeBtn} onClick={this.closeModal}>X Close</button>
           <div className={styles.photoNum}>
