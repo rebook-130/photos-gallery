@@ -1,6 +1,6 @@
 # Project Name
 
-> Home Leasing Web Application
+> Vacation Home Rental Web Application
 
 ## Related Projects
 
