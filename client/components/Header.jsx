@@ -21,21 +21,13 @@ class Header extends React.Component {
     };
     this.openSaveModalHandler = this.openSaveModalHandler.bind(this);
     this.closeSaveModal = this.closeSaveModal.bind(this);
-    // this.openSaveModalFn = this.openSaveModalFn.bind(this);
     this.isSuperhost = this.isSuperhost.bind(this);
   }
 
   openSaveModalHandler() {
-    if (this.state.isSaved) {
-      this.setState((prevState) => (
-        { isSaved: !prevState.isSaved }
-      ));
-      this.props.updateSaveName(this.props.data.room_id, '', false);
-    } else {
       this.setState({
         openSaveOuterModal: true,
       });
-    }
   }
 
   closeSaveModal() {

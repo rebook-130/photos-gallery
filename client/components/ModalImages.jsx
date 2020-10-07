@@ -40,7 +40,6 @@ class ModalImages extends React.Component {
   }
 
   clickSaveHandler() {
-    // if isSaved is true
     if (this.state.isSaved) {
       this.props.updateSaveName(this.props.data.room_id, this.props.data.savedName, false);
       this.setState((prevState) => (
@@ -55,7 +54,7 @@ class ModalImages extends React.Component {
   }
 
   render() {
-    // conditional rendering
+    // conditional rendering for prevbtn & nextbtn
     let prevBtn;
     const { currentPhotoIdx } = this.state;
     if (currentPhotoIdx > 0) {
@@ -84,8 +83,8 @@ class ModalImages extends React.Component {
     }
 
     return (
-      <div>
-        {console.log('props in ModalImages', this.props)}
+      <div className={styles.modalImagesContainer}>
+        {/* {console.log('props in ModalImages', this.props)} */}
         <div className={styles.headerModal}>
           <button className={styles.closeBtn} onClick={this.closeModal}>X Close</button>
           <div className={styles.photoNum}>

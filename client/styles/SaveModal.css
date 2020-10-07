@@ -1,6 +1,9 @@
 /* gray background for saveModal */
 .saveModalBackground {
-  position: absolute;
+  /* position: absolute; */
+  position: fixed;
+  overflow: hidden;
+  overflow-y: hidden;
   width: 100%;
   height: 100%;
   top: 0;
@@ -56,6 +59,7 @@
   background-color: white;
   border-radius: 10px 10px 10px 10px;
   z-index: 2;
+  box-sizing: border-box;
 }
 
 .header {
@@ -120,6 +124,7 @@
   font-family: 'Montserrat', sans-serif;
   color: #4d4b4b71;
 }
+
 .saveName {
   font: 15px;
   font-family: 'Montserrat', sans-serif;
@@ -165,7 +170,6 @@
 
 
 /** Inner modal form **/
-
 .innerModalMain {
   position: absolute;
   left: 50%;
@@ -198,7 +202,6 @@
 ::placeholder {
   color: #55545471;
 }
-
 
 .letterLimit {
   font: 14px lightgray;
