@@ -25,16 +25,9 @@ class Header extends React.Component {
   }
 
   openSaveModalHandler() {
-    if (this.state.isSaved) {
-      this.setState((prevState) => (
-        { isSaved: !prevState.isSaved }
-      ));
-      this.props.updateSaveName(this.props.data.room_id, '', false);
-    } else {
       this.setState({
         openSaveOuterModal: true,
       });
-    }
   }
 
   closeSaveModal() {
