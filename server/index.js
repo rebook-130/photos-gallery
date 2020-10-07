@@ -8,10 +8,11 @@ const port = 3001;
 const db = require('../database/index.js'); // connect db to server
 const Gallery = require('../database/Gallery.js');
 
-app.use('/rooms/:roomId', express.static(path.join(__dirname, '/../public')));
-// app.use(express.static(__dirname + '/../public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+// FOR THE INDIVIDUAL COMPONENT
+app.use('/rooms/:roomId', express.static(path.join(__dirname, '/../public')));
 
 // GET request
 app.get('/api/photogallery/:roomId', (req, res) => {
