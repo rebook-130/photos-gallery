@@ -120,6 +120,7 @@
   font-family: 'Montserrat', sans-serif;
   color: #4d4b4b71;
 }
+
 .saveName {
   font: 15px;
   font-family: 'Montserrat', sans-serif;
@@ -165,7 +166,6 @@
 
 
 /** Inner modal form **/
-
 .innerModalMain {
   position: absolute;
   left: 50%;
@@ -198,7 +198,6 @@
 ::placeholder {
   color: #55545471;
 }
-
 
 .letterLimit {
   font: 14px lightgray;

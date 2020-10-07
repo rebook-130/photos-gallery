@@ -29,7 +29,6 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    // http://localhost:3001/photogallery/1/
     const roomId = window.location.pathname.split('/')[2];
     this.getPhotoGallery(roomId);
   }

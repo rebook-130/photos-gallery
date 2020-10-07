@@ -21,7 +21,6 @@ class Header extends React.Component {
     };
     this.openSaveModalHandler = this.openSaveModalHandler.bind(this);
     this.closeSaveModal = this.closeSaveModal.bind(this);
-    // this.openSaveModalFn = this.openSaveModalFn.bind(this);
     this.isSuperhost = this.isSuperhost.bind(this);
   }
 

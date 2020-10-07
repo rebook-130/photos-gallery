@@ -29,9 +29,7 @@ class SaveModal extends React.Component {
     e.preventDefault();
     console.log('openInnerSaveModalHandler clicked');
 
-    // this.props.closeSaveModal();
     this.setState({
-      // openSaveOuterModal: false,
       openSaveInnerModal: true,
     });
   }
@@ -77,7 +75,7 @@ class SaveModal extends React.Component {
   }
 
   render() {
-    // saveModal (conditional rendering)
+    // saveOuterModal (conditional rendering)
     if (!this.props.openSaveOuterModal) {
       return null;
     }
