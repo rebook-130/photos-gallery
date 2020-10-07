@@ -8,8 +8,8 @@ html, body{
   background-color: #fff;
   width: 1120px;
   margin: auto;
-
-
+  border-top: 2px solid rgb(247, 247, 247);
+  /* box-shadow: 5px 2px rgb(247, 247, 247); */
 }
 
 

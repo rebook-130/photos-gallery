@@ -1,6 +1,6 @@
 # Project Name
 
-> Project description
+> Vacation Home Rental Web Application
 
 ## Related Projects
 
@@ -17,8 +17,9 @@
 
 ## Usage
 
-> Some usage instructions
-To render the page: http://localhost:3001/rooms/1
+>
+To render the page: http://localhost:3001/rooms/:roomId
+example) A roomId is 1 => http://localhost:3001/rooms/1
 
 API End point - GET: ‘/api/photogallery/:roomId’
 
