@@ -1,9 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable camelcase */
-/* eslint-disable consistent-return */
-/* eslint-disable class-methods-use-this */
-/* eslint-disable react/destructuring-assignment */
-/* eslint-disable import/extensions */
 import React from 'react';
 import axios from 'axios';
 import Header from './Header.jsx';
@@ -24,7 +18,6 @@ class App extends React.Component {
     this.renderView = this.renderView.bind(this);
     this.openModalImages = this.openModalImages.bind(this);
     this.closeModalHandler = this.closeModalHandler.bind(this);
-
     this.updateSaveName = this.updateSaveName.bind(this);
   }
 
@@ -36,14 +29,12 @@ class App extends React.Component {
   getPhotoGallery(roomId) {
     axios.get(`/api/photogallery/${roomId}`)
       .then(({ data }) => {
-        console.log('data in axios get req', data);
         const imgUrlList = [];
         const descriptionList = [];
         for (let i = 0; i < data[0].room_photos.length; i += 1) {
           imgUrlList.push(data[0].room_photos[i].imageUrl);
           descriptionList.push(data[0].room_photos[i].description);
         }
-
         const oneListing = {
           room_id: data[0].room_id,
           title: data[0].title,
@@ -68,14 +59,12 @@ class App extends React.Component {
   }
 
   openModalImages(idx) {
-    console.log('app openModalImages-idx', idx);
     this.setState({
       clickedPhotoIndex: idx,
       showModalImages: true,
     });
   }
 
-  // PUT - Update existing save name & isSaved
   updateSaveName(room_id, name, boolean) {
     axios.patch(`/api/photogallery/${room_id}`, {
       name,
@@ -111,7 +100,7 @@ class App extends React.Component {
         </div>
       );
     }
-    // When clicking each photo, a modal will show up
+
     if (showModalImages) {
       return (
         <ModalImages
@@ -140,7 +129,6 @@ class App extends React.Component {
     }
   }
 
-  // Main render()
   render() {
     return this.renderView();
   }

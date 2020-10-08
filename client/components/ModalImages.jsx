@@ -1,8 +1,3 @@
-/* eslint-disable max-len */
-/* eslint-disable react/prop-types */
-/* eslint-disable jsx-a11y/alt-text */
-/* eslint-disable react/button-has-type */
-/* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import styles from '../styles/ModalImages.css';
 import prevSvg from '../icons/prevBtn.svg';
@@ -54,7 +49,6 @@ class ModalImages extends React.Component {
   }
 
   render() {
-    // conditional rendering for prevbtn & nextbtn
     let prevBtn;
     const { currentPhotoIdx } = this.state;
     if (currentPhotoIdx > 0) {
@@ -84,7 +78,6 @@ class ModalImages extends React.Component {
 
     return (
       <div className={styles.modalImagesContainer}>
-        {/* {console.log('props in ModalImages', this.props)} */}
         <div className={styles.headerModal}>
           <button className={styles.closeBtn} onClick={this.closeModal}>X Close</button>
           <div className={styles.photoNum}>
@@ -95,7 +88,6 @@ class ModalImages extends React.Component {
             {this.props.data.imageList.length}
           </div>
 
-          {/* SAVE  */}
           <button className={styles.saveHeartBtn} onClick={this.clickSaveHandler}>
             {this.state.isSaved ? <img className={styles.saveIcon} src={savedHeartSvg} />
               : <img className={styles.saveIcon} src={saveHeartSvg} /> }
