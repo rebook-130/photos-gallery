@@ -24,11 +24,7 @@ class SaveModal extends React.Component {
     this.cancelSaveHandler = this.cancelSaveHandler.bind(this);
   }
 
-  // clicking [Create a list] btn => close saveModal, open innerSaveModal
-  openInnerSaveModalHandler(e) {
-    e.preventDefault();
-    console.log('openInnerSaveModalHandler clicked');
-
+  openInnerSaveModalHandler() {
     this.setState({
       openSaveInnerModal: true,
     });
@@ -42,6 +38,7 @@ class SaveModal extends React.Component {
     this.setState({
       openSaveInnerModal: false,
     });
+    this.props.openSaveModalHandler()
   }
 
   saveNameHandler(e) {
@@ -53,7 +50,6 @@ class SaveModal extends React.Component {
   }
 
   saveHandleSubmit() {
-    //  update isSaved - case_2: never saved yet, trying to create or change save category name
     this.props.updateSaveName(this.props.roomId, this.state.name, true);
 
     this.setState({

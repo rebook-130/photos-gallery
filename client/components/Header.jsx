@@ -97,7 +97,7 @@ class Header extends React.Component {
             {this.props.data.isSaved ? 'Saved' : 'Save'}
           </button>
           <SaveModal
-            openSaveModalHandler={this.state.openSaveModalHandler}
+            openSaveModalHandler={this.openSaveModalHandler}
             closeSaveModal={this.closeSaveModal}
             openSaveOuterModal={this.state.openSaveOuterModal}
             roomId={this.props.data.room_id}
