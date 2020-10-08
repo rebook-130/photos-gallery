@@ -1,10 +1,3 @@
-/* eslint-disable react/button-has-type */
-/* eslint-disable max-len */
-/* eslint-disable jsx-a11y/alt-text */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable react/prop-types */
-/* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import styles from '../styles/PhotoGallery.css';
 
@@ -23,7 +16,6 @@ class PhotoGallery extends React.Component {
   }
 
   photo0Clicked() {
-    console.log('photo0 or show all photos clicked');
     this.props.openModalImages(0);
   }
 

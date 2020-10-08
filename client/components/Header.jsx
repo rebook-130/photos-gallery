@@ -1,8 +1,3 @@
-/* eslint-disable import/extensions */
-/* eslint-disable react/prop-types */
-/* eslint-disable react/button-has-type */
-/* eslint-disable react/destructuring-assignment */
-/* eslint-disable jsx-a11y/alt-text */
 import React from 'react';
 import styles from '../styles/Header.css';
 import starImg from '../icons/star.png';
@@ -58,8 +53,6 @@ class Header extends React.Component {
   render() {
     return (
       <div className={styles.headerContainer}>
-        {console.log('props in Header', this.props)}
-
         <span className={styles.title}>{ this.props.data.title }</span>
         <br />
 
@@ -84,7 +77,6 @@ class Header extends React.Component {
             </span>
           </div>
 
-          {/* SAVE  */}
           <button
             className={styles.saveHeartBtn}
             onClick={() => {

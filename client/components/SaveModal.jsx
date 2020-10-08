@@ -1,9 +1,3 @@
-/* eslint-disable react/button-has-type */
-/* eslint-disable react/prop-types */
-/* eslint-disable max-len */
-/* eslint-disable class-methods-use-this */
-/* eslint-disable react/destructuring-assignment */
-/* eslint-disable react/no-unused-state */
 import React from 'react';
 import styles from '../styles/SaveModal.css';
 
@@ -11,7 +5,6 @@ class SaveModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // eslint-disable-next-line react/prop-types
       isSaved: this.props.isSaved,
       openSaveInnerModal: false,
     };
@@ -42,7 +35,6 @@ class SaveModal extends React.Component {
   }
 
   saveNameHandler(e) {
-    console.log('e.target.value', e.target.value);
     const savedName = e.target.value;
     this.setState({
       name: savedName,
@@ -71,12 +63,10 @@ class SaveModal extends React.Component {
   }
 
   render() {
-    // saveOuterModal (conditional rendering)
     if (!this.props.openSaveOuterModal) {
       return null;
     }
 
-    // saveInnerModal
     let saveInnerModal;
 
     if (this.state.openSaveInnerModal) {
@@ -105,7 +95,6 @@ class SaveModal extends React.Component {
     }
 
     return (
-      // saveOuterModal
       <div>
         <div className={styles.saveModalBackground}>
           <div className={styles.modalMain} onSubmit={this.handleSubmit}>
