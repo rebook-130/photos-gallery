@@ -11,7 +11,6 @@ const Gallery = require('../database/Gallery.js');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// FOR THE INDIVIDUAL COMPONENT
 app.use('/rooms/:roomId', express.static(path.join(__dirname, '/../public')));
 
 // GET request
@@ -44,7 +43,6 @@ app.patch('/api/photogallery/:roomId', (req, res) => {
     },
   };
 
-  // Gallery.updateOne(filter, updateContents)
   Gallery.findOneAndUpdate({'room_id': room_id}, updateContents)
     .then((response) => {
       console.log('SERVER UPDATE SAVE SUCCESS', response);

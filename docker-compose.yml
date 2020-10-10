@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  server:
+    build: .
+    ports:
+      - '3001:3001'
+    depends_on:
+      - 'database'
+    restart: on-failure
+
+  database:
+    image: mongo:latest
+    volumes:
+      - ./data:/data/db
