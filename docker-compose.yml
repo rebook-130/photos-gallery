@@ -2,7 +2,7 @@ version: '3'
 
 services:
   proxy:
-    build: ../Bookable-proxy
+    build: ../Bookable-Proxy
     ports:
       - "3000:3000"
   gallery-service:
