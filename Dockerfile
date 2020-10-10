@@ -19,5 +19,5 @@ EXPOSE 3001
 
 # How do you start your app?
 # CMD [ "npm", "start" ]
-CMD ["sh", "-c", "sleep 60; npm run start:prod"]
+CMD ["sh", "-c", "sleep 60; npm run start"]
 

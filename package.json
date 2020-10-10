@@ -8,13 +8,11 @@
   },
   "scripts": {
     "build:prod": "webpack",
-    "start:prod": "node server/index.js",
-    "build:dev": "webpack -d --watch",
-    "start": "nodemon server/index.js",
     "seed": "node database/seed.js",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage --colors"
+    "start": "node server/index.js",
+    "start:dev": "nodemon server/index.js -w server -w database-mysql",
+    "build:dev": "webpack -d --watch",
+    "test": "jest"
   },
   "dependencies": {
     "axios": "^0.19.2",
