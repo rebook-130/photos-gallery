@@ -2,7 +2,6 @@ version: '3'
 
 services:
   proxy:
-    image:
     build: ../Bookable-Proxy
     container_name: 'proxy'
     ports:
