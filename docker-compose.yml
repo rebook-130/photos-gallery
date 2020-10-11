@@ -1,8 +1,14 @@
 version: '3'
 
 services:
-  server:
+  proxy:
+    build: ../Bookable-Proxy
+    container_name: 'proxy'
+    ports:
+      - "3010:3010"
+  gallery-service:
     build: .
+    container_name: 'gallery-service'
     ports:
       - '3001:3001'
     depends_on:
@@ -11,5 +17,6 @@ services:
 
   database:
     image: mongo:latest
+    container_name: 'mongodb'
     volumes:
       - ./data:/data/db
