@@ -28,13 +28,10 @@ app.get('/api/photogallery/:roomId', (req, res) => {
     });
 });
 
-// PUT - update
+// PATCH - update
 app.patch('/api/photogallery/:roomId', (req, res) => {
   const room_id = req.params.roomId;
   const { name, isSaved } = req.body;
-  console.log('req.params', req.params);
-  console.log('room_Id', room_id);
-  console.log('name, isSaved', name, isSaved);
 
   const updateContents = {
     $set: {

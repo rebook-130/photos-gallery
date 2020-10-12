@@ -5,7 +5,7 @@ services:
     build: ../Bookable-Proxy
     container_name: 'proxy'
     ports:
-      - "3010:3010"
+      - "3010ld:3010"
   gallery-service:
     build: .
     container_name: 'gallery-service'

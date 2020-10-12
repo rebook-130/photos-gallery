@@ -21,7 +21,7 @@
 To render the page: http://localhost:3001/rooms/:roomId
 example) A roomId is 1 => http://localhost:3001/rooms/1
 
-API End point - GET: ‘/api/photogallery/:roomId’
+API End point - 1. GET: ‘/api/photogallery/:roomId’
 
 Output (Data shape):
 
@@ -44,6 +44,15 @@ Output (Data shape):
         },...
 }
 
+API End point - 2. PATCH: ‘/api/photogallery/:roomId’
+
+Incoming data shape:
+           {
+	 isSaved: true,
+savedName: ‘Bali’
+}
+
+
 ## Requirements
 
 An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
@@ -57,7 +66,7 @@ From within the root directory:
 
 To run webpack
 ```sh
-npm run build:dev
+npm run build:prod
 ```
 
 To run server
