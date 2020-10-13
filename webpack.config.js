@@ -1,9 +1,11 @@
-var path = require('path');
+const path = require('path');
+
 const SRC_DIR = path.join(__dirname, '/client');
 const DIST_DIR = path.join(__dirname, '/public');
 
 module.exports = {
   entry: `${SRC_DIR}/index.jsx`,
+  mode: 'production',
   output: {
     filename: 'bundle.js',
     path: DIST_DIR,
@@ -16,7 +18,6 @@ module.exports = {
         options: {
           presets: ['@babel/preset-react', '@babel/preset-env'],
         },
-        // query: { compact: false },
       },
       {
         test: /\.(jpg|png|svg)$/,

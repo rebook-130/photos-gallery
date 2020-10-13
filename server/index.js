@@ -4,7 +4,7 @@ const app = express();
 const path = require('path');
 const bodyParser = require('body-parser');
 
-const port = 3001;
+const port = 3009;
 const db = require('../database/index.js'); // connect db to server
 const Gallery = require('../database/Gallery.js');
 
