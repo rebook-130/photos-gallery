@@ -25,4 +25,4 @@ build/
 dist/
 
 data
-bundle.js
+public/bundle.js
