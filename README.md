@@ -4,7 +4,6 @@
 
 ## Related Projects
 
-  - https://github.com/Bookable-130/photo-gallery-service
   - https://github.com/Bookable-130/calendar-service
   - https://github.com/Bookable-130/review-service
   - https://github.com/Bookable-130/more-places-service
@@ -19,12 +18,15 @@
 
 >
 To render the page: http://localhost:3001/rooms/:roomId
-example) A roomId is 1 => http://localhost:3001/rooms/1
+example: for roomId 1 => http://localhost:3001/rooms/1
 
-API End point - 1. GET: ‘/api/photogallery/:roomId’
+API End points
 
-Output (Data shape):
-
+1. Get room info
+GET: ‘/api/photogallery/:roomId’
+Path parameters: roomId
+Success Status Code: 200
+Returns: JSON:
 {
     "_id": "5f6e2d5342753d11d03945e6",
     "user_id": 1,
@@ -35,7 +37,7 @@ Output (Data shape):
     “isSuperhost”: true,
     "address": "San Francisco, California, United States",
     "isSaved": false,
-    "savedName": “”,
+    "listName": “”,
     "room_photos": [
         {
             "_id": "5f6e2d5342753d11d03945e8",
@@ -44,21 +46,38 @@ Output (Data shape):
         },...
 }
 
-API End point - 2. PATCH: ‘/api/photogallery/:roomId’
-
-Incoming data shape:
-           {
-	 isSaved: true,
-savedName: ‘Bali’
+2. Add photo
+POST: ‘/api/photogallery/:roomId’
+Request body:
+{
+  "_id": "5f6e2d535775hs6945e8",
+  "imageUrl": "https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_039.jpg",
+  "description": "living room"
 }
+Success Status Code: 201
+
+3. Update room info
+PATCH: ‘/api/photogallery/:roomId’
+Path parameters: roomId
+Success Status Code: 204
+Request Body: Expects JSON with the following keys (include only keys to be updated)
+{
+  isSaved: true,
+  listName: ‘Bali’
+}
+
+4. Delete photo
+DELETE: ‘/api/photogallery/:roomId’
+Path parameters: roomId
+Request body: {"_id": "5f6e2d535775hs6945e8"}
+Success Status Code: 204
 
 
 ## Requirements
 
 An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
 
-- Node 6.13.0
-- etc
+- Node 12.18.4
 
 ## Development
 
@@ -89,7 +108,6 @@ npm test
 From within the root directory:
 
 ```sh
-npm install -g webpack
 npm install
 ```
 
