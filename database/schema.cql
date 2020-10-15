@@ -4,7 +4,6 @@ CREATE KEYSPACE gallery WITH replication =
 
 CREATE TABLE users (
   user_id int,
-  room_id int,
   name text,
   PRIMARY KEY (user_id)
 );
@@ -19,7 +18,7 @@ CREATE TABLE rooms (
   address text,
   isSaved boolean,
   listName text,
-  PRIMARY KEY (room_id)
+  PRIMARY KEY (room_id, owner_id) --??owner_id --
 );
 
 CREATE TABLE photos (
