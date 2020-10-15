@@ -13,3 +13,11 @@ CREATE TABLE rooms (
   listName text,
   PRIMARY KEY (room_id)
 );
+
+  CREATE TABLE photos (
+    photo_id int,
+    room_id int,
+    url text,
+    description text,
+    PRIMARY KEY(room_id, photo_id)
+  );
