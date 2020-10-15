@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 const express = require('express');
 
 const app = express();
@@ -19,7 +20,6 @@ app.get('/api/photogallery/:roomId', (req, res) => {
 
   Gallery.find({ room_id: roomId })
     .then((response) => {
-      console.log('SERVER GET GALLERY SUCCESS');
       res.status(200).send(response);
     })
     .catch((err) => {
@@ -35,18 +35,60 @@ app.patch('/api/photogallery/:roomId', (req, res) => {
 
   const updateContents = {
     $set: {
-      'savedName': name,
-      'isSaved': isSaved,
+      savedName: name,
+      isSaved,
     },
   };
 
-  Gallery.findOneAndUpdate({'room_id': room_id}, updateContents)
+  Gallery.findOneAndUpdate({ room_id }, updateContents)
     .then((response) => {
-      console.log('SERVER UPDATE SAVE SUCCESS', response);
       res.status(200).send(response);
     })
     .catch((err) => {
       console.log('SERVER UPDATE SAVE ERROR', err);
+      res.status(400).send();
+    });
+});
+
+// POST add a photo
+app.post('/api/photogallery/:roomId', (req, res) => {
+  const room_id = req.params.roomId;
+  const { imageUrl, description } = req.body;
+  const addPhoto = {
+    $push: {
+      room_photos: {
+        imageUrl,
+        description,
+      },
+    },
+  };
+  console.log(addPhoto);
+  Gallery.findOneAndUpdate({ room_id }, addPhoto, { new: true, upsert: true })
+    .then((response) => {
+      res.status(201).send(response);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(400).send();
+    });
+});
+
+// DELETE A PHOTO
+app.delete('/api/photogallery/:roomId', (req, res) => {
+  const room_id = req.params.roomId;
+  const { _id } = req.body;
+  const toDelete = {
+    $pull: {
+      room_photos: { _id },
+    },
+  };
+
+  Gallery.updateOne({ room_id }, toDelete)
+    .then((response) => {
+      res.status(204).send(response);
+    })
+    .catch((err) => {
+      console.log(err);
       res.status(400).send();
     });
 });
