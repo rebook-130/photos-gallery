@@ -23,12 +23,13 @@ example: for roomId 1 => http://localhost:3001/rooms/1
 API End points
 
 1. Get room info
-GET: ‘/api/photogallery/:roomId’
+GET: '/api/photogallery/:roomId'
 Path parameters: roomId
 Success Status Code: 200
 Returns: JSON:
 {
   "id": 1,
+  "user_id": "3",
   "title": "Civic Center Studio With Parking",
   "rating": 4.2,
   "reviews_num": 169,
@@ -45,17 +46,18 @@ Returns: JSON:
 }
 
 2. Add photo
-POST: ‘/api/photogallery/:roomId’
+POST: '/api/photogallery/:roomId'
 Request body:
 {
-  "_id": "5",
+  "image_id": "5",
+  "user_id": "3",
   "imageUrl": "https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_039.jpg",
   "description": "living room"
 }
 Success Status Code: 201
 
 3. Update room info
-PATCH: ‘/api/photogallery/:roomId’
+PATCH: '/api/photogallery/:roomId'
 Path parameters: roomId
 Success Status Code: 204
 Request Body: Expects JSON with the following keys (include only keys to be updated)
@@ -65,10 +67,14 @@ Request Body: Expects JSON with the following keys (include only keys to be upda
 }
 
 4. Delete photo
-DELETE: ‘/api/photogallery/:roomId’
+DELETE: '/api/photogallery/:roomId'
 Path parameters: roomId
-Request body: {"id": "8"}
+Request body: {
+  "image_id": "8",
+  "user_id": "3"
+}
 Success Status Code: 204
+
 
 
 ## Requirements
