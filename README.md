@@ -28,29 +28,27 @@ Path parameters: roomId
 Success Status Code: 200
 Returns: JSON:
 {
-    "_id": "5f6e2d5342753d11d03945e6",
-    "user_id": 1,
-    "room_id": 1,
-    "title": "Civic Center Studio With Parking",
-    "ratings": 4.2,
-    "number_of_reviews": 169,
-    “isSuperhost”: true,
-    "address": "San Francisco, California, United States",
-    "isSaved": false,
-    "listName": “”,
-    "room_photos": [
-        {
-            "_id": "5f6e2d5342753d11d03945e8",
-            "imageUrl": "https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_031.jpg",
-            "description": "voluptate"
-        },...
+  "id": 1,
+  "title": "Civic Center Studio With Parking",
+  "rating": 4.2,
+  "reviews_num": 169,
+  “is_superhost”: true,
+  "address": "San Francisco, California, United States",
+  "is_saved": false,
+  "list_name": “”,
+  "room_photos": [
+      {
+          "id": "5",
+          "image_url": "https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_031.jpg",
+          "description": "voluptate"
+      },...
 }
 
 2. Add photo
 POST: ‘/api/photogallery/:roomId’
 Request body:
 {
-  "_id": "5f6e2d535775hs6945e8",
+  "_id": "5",
   "imageUrl": "https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_039.jpg",
   "description": "living room"
 }
@@ -62,14 +60,14 @@ Path parameters: roomId
 Success Status Code: 204
 Request Body: Expects JSON with the following keys (include only keys to be updated)
 {
-  isSaved: true,
-  listName: ‘Bali’
+  is_saved: true,
+  list_name: ‘Bali’
 }
 
 4. Delete photo
 DELETE: ‘/api/photogallery/:roomId’
 Path parameters: roomId
-Request body: {"_id": "5f6e2d535775hs6945e8"}
+Request body: {"id": "8"}
 Success Status Code: 204
 
 
