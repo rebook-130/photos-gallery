@@ -8,7 +8,7 @@ mongoose.set('useFindAndModify', false);
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'db connection error:'));
-db.once('open', function () {
+db.once('open', () => {
   console.log('mongoDB connected');
 });
 

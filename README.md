@@ -50,7 +50,6 @@ Returns: JSON:
 POST: ‘/api/photogallery/:roomId’
 Request body:
 {
-  "_id": "5f6e2d535775hs6945e8",
   "imageUrl": "https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_039.jpg",
   "description": "living room"
 }
