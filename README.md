@@ -23,57 +23,57 @@ example: for roomId 1 => http://localhost:3001/rooms/1
 API End points
 
 1. Get room info
-GET: '/api/photogallery/:roomId'
+GET: '/api/rooms/:roomId/photos'
 Path parameters: roomId
 Success Status Code: 200
 Returns: JSON:
 {
-  "id": 1,
-  "user_id": "3",
-  "title": "Civic Center Studio With Parking",
-  "rating": 4.2,
-  "reviews_num": 169,
-  “is_superhost”: true,
-  "address": "San Francisco, California, United States",
-  "is_saved": false,
-  "list_name": “”,
+  "id": integer,
+  "owner_id": integer,
+  "title": string,
+  "rating": decimal,
+  "reviews_num": integer,
+  “is_superhost”: boolean,
+  "address": string,
+  "is_saved": boolean,
+  "list_name": string,
   "room_photos": [
       {
-          "id": "5",
-          "image_url": "https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_031.jpg",
-          "description": "voluptate"
+          "id": integer,
+          "image_url": string,
+          "description": string
       },...
 }
 
 2. Add photo
-POST: '/api/photogallery/:roomId'
+POST: '/api/rooms/:roomId/photo'
 Path parameters: roomId
 Request body:
 {
-  "user_id": "3",
-  "imageUrl": "https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_039.jpg",
-  "description": "living room"
+  "user_id": integer,
+  "imageUrl": string,
+  "description": string
 }
 Success Status Code: 201
 
-3. Update room info
-PATCH: '/api/photogallery/:roomId'
+3. Delete photo
+DELETE: '/api/rooms/:roomId/photo'
+Path parameters: roomId
+Request body: {
+  "image_id": integer,
+  "user_id": integer
+}
+Success Status Code: 204
+
+4. Update room saved to list info
+PATCH: '/api/rooms/:roomId/list'
 Path parameters: roomId
 Success Status Code: 204
 Request Body: Expects JSON with the following keys (include only keys to be updated)
 {
-  is_saved: true,
-  list_name: ‘Bali’
+  is_saved: boolean,
+  list_name: string
 }
-
-4. Delete photo
-DELETE: '/api/photogallery/:roomId'
-Path parameters: roomId
-Request body: {
-  "image_id": "8",
-  "user_id": "3"
-}
-Success Status Code: 204
 
 
 
