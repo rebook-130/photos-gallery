@@ -22,7 +22,7 @@ example: for roomId 1 => http://localhost:3001/rooms/1
 
 API End points
 
-1. Get room info
+1. Get room info and photos
 GET: '/api/rooms/:roomId/photos'
 Path parameters: roomId
 Success Status Code: 200
@@ -30,12 +30,12 @@ Returns: JSON:
 {
   "id": integer,
   "owner_id": integer,
-  "title": string,
-  "rating": decimal,
-  "reviews_num": integer,
-  “is_superhost”: boolean,
+  "room_title": string,
+  "room_rating": decimal,
+  "reviews": integer,
+  “superhost”: boolean,
   "address": string,
-  "is_saved": boolean,
+  "saved_to_list": boolean,
   "list_name": string,
   "room_photos": [
       {
@@ -50,7 +50,6 @@ POST: '/api/rooms/:roomId/photo'
 Path parameters: roomId
 Request body:
 {
-  "user_id": integer,
   "imageUrl": string,
   "description": string
 }
@@ -61,7 +60,6 @@ DELETE: '/api/rooms/:roomId/photo'
 Path parameters: roomId
 Request body: {
   "image_id": integer,
-  "user_id": integer
 }
 Success Status Code: 204
 
@@ -74,6 +72,36 @@ Request Body: Expects JSON with the following keys (include only keys to be upda
   is_saved: boolean,
   list_name: string
 }
+
+<!-- 1. Get room info
+GET: '/api/rooms/:roomId/info'
+Path parameters: roomId
+Success Status Code: 200
+Returns: JSON:
+{
+  "id": integer,
+  "owner_id": integer,
+  "title": string,
+  "rating": decimal,
+  "reviews_num": integer,
+  “is_superhost”: boolean,
+  "address": string,
+  "is_saved": boolean,
+  "list_name": string
+}
+
+2. Get room photos
+GET: '/api/rooms/:roomId/info'
+Path parameters: roomId
+Success Status Code: 200
+Returns: JSON:
+{
+  {
+    "id": integer,
+    "image_url": string,
+    "description": string
+  },...
+} -->
 
 
 ## Requirements
