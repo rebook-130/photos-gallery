@@ -23,53 +23,57 @@ example: for roomId 1 => http://localhost:3001/rooms/1
 API End points
 
 1. Get room info
-GET: ‘/api/photogallery/:roomId’
+GET: '/api/rooms/:roomId/photos'
 Path parameters: roomId
 Success Status Code: 200
 Returns: JSON:
 {
-    "_id": "5f6e2d5342753d11d03945e6",
-    "user_id": 1,
-    "room_id": 1,
-    "title": "Civic Center Studio With Parking",
-    "ratings": 4.2,
-    "number_of_reviews": 169,
-    “isSuperhost”: true,
-    "address": "San Francisco, California, United States",
-    "isSaved": false,
-    "listName": “”,
-    "room_photos": [
-        {
-            "_id": "5f6e2d5342753d11d03945e8",
-            "imageUrl": "https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_031.jpg",
-            "description": "voluptate"
-        },...
+  "id": integer,
+  "owner_id": integer,
+  "title": string,
+  "rating": decimal,
+  "reviews_num": integer,
+  “is_superhost”: boolean,
+  "address": string,
+  "is_saved": boolean,
+  "list_name": string,
+  "room_photos": [
+      {
+          "id": integer,
+          "image_url": string,
+          "description": string
+      },...
 }
 
 2. Add photo
-POST: ‘/api/photogallery/:roomId’
+POST: '/api/rooms/:roomId/photo'
+Path parameters: roomId
 Request body:
 {
-  "imageUrl": "https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_039.jpg",
-  "description": "living room"
+  "user_id": integer,
+  "imageUrl": string,
+  "description": string
 }
 Success Status Code: 201
 
-3. Update room info
-PATCH: ‘/api/photogallery/:roomId’
+3. Delete photo
+DELETE: '/api/rooms/:roomId/photo'
+Path parameters: roomId
+Request body: {
+  "image_id": integer,
+  "user_id": integer
+}
+Success Status Code: 204
+
+4. Update room saved to list info
+PATCH: '/api/rooms/:roomId/list'
 Path parameters: roomId
 Success Status Code: 204
 Request Body: Expects JSON with the following keys (include only keys to be updated)
 {
-  isSaved: true,
-  listName: ‘Bali’
+  is_saved: boolean,
+  list_name: string
 }
-
-4. Delete photo
-DELETE: ‘/api/photogallery/:roomId’
-Path parameters: roomId
-Request body: {"_id": "5f6e2d535775hs6945e8"}
-Success Status Code: 204
 
 
 ## Requirements
