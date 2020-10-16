@@ -7,24 +7,24 @@ CREATE DATABASE gallery;
 
 CREATE TABLE IF NOT EXISTS users (
   id SERIAL PRIMARY KEY,
-  name VARCHAR
+  name VARCHAR(50) UNIQUE
 );
 
 CREATE TABLE IF NOT EXISTS rooms (
   id SERIAL PRIMARY KEY,
   owner_id INTEGER REFERENCES users(id),
-  title VARCHAR,
-  rating INTEGER,
+  title VARCHAR(150),
+  rating DECIMAL,
   reviews_num INTEGER,
   is_superhost BOOLEAN,
-  address VARCHAR,
+  address VARCHAR(150),
   is_saved BOOLEAN,
-  list_name VARCHAR
+  list_name VARCHAR(75)
 );
 
 CREATE TABLE IF NOT EXISTS photos (
   id SERIAL PRIMARY KEY,
   room_id INTEGER REFERENCES rooms(id),
-  image_url VARCHAR,
-  description VARCHAR
+  image_url VARCHAR(100),
+  description VARCHAR(50)
 );
