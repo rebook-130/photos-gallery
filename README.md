@@ -50,7 +50,6 @@ POST: '/api/rooms/:roomId/photo'
 Path parameters: roomId
 Request body:
 {
-  "user_id": integer,
   "imageUrl": string,
   "description": string
 }
@@ -60,8 +59,7 @@ Success Status Code: 201
 DELETE: '/api/rooms/:roomId/photo'
 Path parameters: roomId
 Request body: {
-  "image_id": integer,
-  "user_id": integer
+  "image_id": integer
 }
 Success Status Code: 204
 
