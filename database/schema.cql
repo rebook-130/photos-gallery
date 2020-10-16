@@ -8,23 +8,31 @@ CREATE TABLE users (
   PRIMARY KEY (user_id)
 );
 
-CREATE TABLE rooms (
+CREATE TABLE photos_by_room_id (
   room_id int,
-  owner_id int,
-  title text,
-  ratings int,
-  reviews int,
-  superhost boolean,
-  address text,
-  isSaved boolean,
-  listName text,
-  PRIMARY KEY (room_id, owner_id) --??owner_id --
-);
-
-CREATE TABLE photos (
+  owner_id int static,
+  room_title text static,
+  room_ratings int static,
+  reviews int static,
+  superhost boolean static,
+  address text static,
+  saved_to_list boolean  static,
+  list_name text static,
   photo_id int,
-  room_id int,
   url text,
   description text,
   PRIMARY KEY(room_id, photo_id)
 );
+
+-- CREATE TABLE rooms (
+--   room_id int,
+--   owner_id int,
+--   title text,
+--   ratings int,
+--   reviews int,
+--   superhost boolean,
+--   address text,
+--   isSaved boolean,
+--   listName text,
+--   PRIMARY KEY (room_id, owner_id) --??owner_id --
+-- );
