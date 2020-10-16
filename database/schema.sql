@@ -7,13 +7,12 @@ CREATE DATABASE gallery;
 
 CREATE TABLE IF NOT EXISTS users (
   id SERIAL PRIMARY KEY,
-  room_id INTEGER,
   name VARCHAR
 );
 
 CREATE TABLE IF NOT EXISTS rooms (
   id SERIAL PRIMARY KEY,
-  user_id INTEGER REFERENCES users(id),
+  owner_id INTEGER REFERENCES users(id),
   title VARCHAR,
   rating INTEGER,
   reviews_num INTEGER,

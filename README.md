@@ -47,9 +47,9 @@ Returns: JSON:
 
 2. Add photo
 POST: '/api/photogallery/:roomId'
+Path parameters: roomId
 Request body:
 {
-  "image_id": "5",
   "user_id": "3",
   "imageUrl": "https://bookable-rooms-images.s3.us-east-2.amazonaws.com/image_bali_039.jpg",
   "description": "living room"
