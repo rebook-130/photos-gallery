@@ -36,3 +36,11 @@ CREATE TABLE photos_by_room_id (
 --   listName text,
 --   PRIMARY KEY (room_id, owner_id) --??owner_id --
 -- );
+
+-- CREATE TABLE photos_by_room_id (
+--   room_id int,
+--   photo_id int,
+--   url text,
+--   description text,
+--   PRIMARY KEY(room_id, photo_id)
+-- );
