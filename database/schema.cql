@@ -16,7 +16,7 @@ CREATE TABLE photos_by_room_id (
   reviews int static,
   superhost boolean static,
   address text static,
-  saved_to_list boolean  static,
+  saved_to_list boolean static,
   list_name text static,
   photo_id int,
   url text,
