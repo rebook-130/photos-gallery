@@ -1,6 +1,6 @@
 DROP KEYSPACE [ IF EXISTS ] gallery
 CREATE KEYSPACE gallery WITH replication =
-{'class': 'SimpleStrategy', 'replication_factor' : 3};
+{'class': 'SimpleStrategy', 'replication_factor' : 1};
 
 CREATE TABLE users (
   user_id int,
