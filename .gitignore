@@ -23,6 +23,8 @@ coverage
 # Compiled Dirs (http://nodejs.org/api/addons.html)
 build/
 dist/
+/CSV
+*.csv
 
 data
 public/bundle.js
