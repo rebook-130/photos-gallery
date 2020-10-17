@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS rooms (
   rating DECIMAL,
   reviews_num INTEGER,
   is_superhost BOOLEAN,
-  address VARCHAR(150),
+  address VARCHAR(150) UNIQUE,
   is_saved BOOLEAN,
   list_name VARCHAR(75)
 );
