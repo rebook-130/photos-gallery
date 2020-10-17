@@ -12,7 +12,7 @@ CREATE TABLE photos_by_room_id (
   room_id int,
   owner_id int static,
   room_title text static,
-  room_ratings int static,
+  room_ratings float static,
   reviews int static,
   superhost boolean static,
   address text static,
