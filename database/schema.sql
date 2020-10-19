@@ -23,8 +23,19 @@ CREATE TABLE IF NOT EXISTS rooms (
 );
 
 CREATE TABLE IF NOT EXISTS photos (
-  id SERIAL PRIMARY KEY,
+  id BIGINT PRIMARY KEY,
   room_id INTEGER REFERENCES rooms(id),
   image_url VARCHAR(100),
-  description VARCHAR(50)
+  description VARCHAR(75)
 );
+
+COPY users FROM '/Users/anna/studyspace/HR-SEI/projects/sdc/photo-gallery-service/database/CSV/users.csv' CSV header;
+COPY rooms FROM '/Users/anna/studyspace/HR-SEI/projects/sdc/photo-gallery-service/database/CSV/rooms1.csv' CSV header;
+COPY rooms FROM '/Users/anna/studyspace/HR-SEI/projects/sdc/photo-gallery-service/database/CSV/rooms2.csv' CSV header;
+COPY rooms FROM '/Users/anna/studyspace/HR-SEI/projects/sdc/photo-gallery-service/database/CSV/rooms3.csv' CSV header;
+COPY rooms FROM '/Users/anna/studyspace/HR-SEI/projects/sdc/photo-gallery-service/database/CSV/rooms4.csv' CSV header;
+COPY photos FROM '/Users/anna/studyspace/HR-SEI/projects/sdc/photo-gallery-service/database/CSV/photos1.csv' CSV header;
+COPY photos FROM '/Users/anna/studyspace/HR-SEI/projects/sdc/photo-gallery-service/database/CSV/photos2.csv' CSV header;
+COPY photos FROM '/Users/anna/studyspace/HR-SEI/projects/sdc/photo-gallery-service/database/CSV/photos3.csv' CSV header;
+COPY photos FROM '/Users/anna/studyspace/HR-SEI/projects/sdc/photo-gallery-service/database/CSV/photos4.csv' CSV header;
+COPY photos FROM '/Users/anna/studyspace/HR-SEI/projects/sdc/photo-gallery-service/database/CSV/photos5.csv' CSV header;
