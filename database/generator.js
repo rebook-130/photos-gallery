@@ -8,13 +8,14 @@ const fs = require('fs');
 const faker = require('faker');
 const argv = require('yargs').argv;
 
+// change lines# when generating photos_by_room_id (generated 2000000 at a time)
 const lines = argv.lines || 10000000;
-const filenameUsers = argv.output || './CSV/users.csv';
-const streamUsers = fs.createWriteStream(filenameUsers, { autoClose: true });
+// const filenameUsers = argv.output || './CSV/users.csv';
+// const streamUsers = fs.createWriteStream(filenameUsers, { autoClose: true });
 // const filenameRooms = argv.output || './CSV/rooms4.csv';
 // const streamRooms = fs.createWriteStream(filenameRooms, { autoClose: true });
-// const filenamePhotos = argv.output || './CSV/photos5.csv';
-// const streamPhotos = fs.createWriteStream(filenamePhotos);
+const filenamePhotos = argv.output || './CSV/photos5.csv';
+const streamPhotos = fs.createWriteStream(filenamePhotos);
 
 // ==========================DATA GENERATION ========================
 const template = {
@@ -34,27 +35,24 @@ const createUsers = (start, end) => {
   return records.join("\n");
 };
 
-const createRooms = (id) => {
-  const owner_id = random(10000001, 1);
-  const title = `${template.adjective[random(template.adjective.length)]} ${template.noun[random(template.noun.length)]} with ${template.attribute1[random(template.attribute1.length)]} ${template.attribute2[random(template.attribute2.length)]}`;
-  const rating = faker.finance.amount(3.5, 5, 1);
-  const reviews_num = random(2501);
-  const is_superhost = random(2) !== 0;
-  const address = `"${faker.address.streetAddress()}, ${faker.address.city()}, ${faker.address.state()}, ${faker.address.zipCode()}"`;
-  const is_saved = random(2) !== 0;
-  const list_name = is_saved ? template.adjective[random(template.adjective.length)] : '';
-
-  return `${id},${owner_id},${title},${rating},${reviews_num},${is_superhost},${address},${is_saved},${list_name}\n`;
-};
-
-const createPhotos = (room) => {
+const createPhotosByRoomId = (room) => {
   const photos = [];
   const photosCount = random(11, 5);
+
+  const owner_id = random(10000001, 1);
+  const room_title = `${template.adjective[random(template.adjective.length)]} ${template.noun[random(template.noun.length)]} with ${template.attribute1[random(template.attribute1.length)]} ${template.attribute2[random(template.attribute2.length)]}`;
+  const room_rating = faker.finance.amount(3.5, 5, 1);
+  const reviews = random(2501);
+  const superhost = random(2) !== 0;
+  const address = `"${faker.address.streetAddress()}, ${faker.address.city()}, ${faker.address.state()}, ${faker.address.zipCode()}"`;
+  const saved_to_list = random(2) !== 0;
+  const list_name = saved_to_list ? template.adjective[random(template.adjective.length)] : '';
+
   for (let i = 0; i <= photosCount; i += 1) {
-    const room_id = room;
-    const image_url = `https://house-photos-sdc.s3-us-west-1.amazonaws.com/${random(994, 1)}.jpg`;
+    const photo_id = `${room}0${i + 1}`;
+    const url = `https://house-photos-sdc.s3-us-west-1.amazonaws.com/${random(994, 1)}.jpg`;
     const description = faker.lorem.sentence(2, false);
-    photos.push(`${room}0${i + 1},${room_id},${image_url},${description}`);
+    photos.push(`${room},${owner_id},${room_title},${room_rating},${reviews},${superhost},${address},${saved_to_list},${list_name},${photo_id},${url},${description}`);
   }
   return `${photos.join("\n")}\n`;
 };
@@ -67,53 +65,47 @@ const startWritingUsers = (writeStream, encoding) => {
   console.log('done with users');
 };
 
-// write out header line before invoking the loop
-streamUsers.write(`user_id,name\n`, 'utf-8');
-startWritingUsers(streamUsers, 'utf-8');
+// // write out header line before invoking the loop
+// streamUsers.write(`user_id,name\n`, 'utf-8');
+// startWritingUsers(streamUsers, 'utf-8');
 
 // ******************** PHOTOS BY ROOM ID ************************
-// const startWritingRooms = (writeStream, encoding) => {
-//   const rooms = createRooms(5000000, 7500000);
-//   writeStream.write(rooms, encoding);
-// };
 
-// streamRooms.write(`owner_id,title,rating,reviews_num,is_superhost,address,is_saved,list_name\n`, 'utf-8');
-// startWritingRooms(streamRooms, 'utf-8');
+const startWritingRooms = (writeStream, encoding, done) => {
+  // i indicates how many records to write at a time; start at 0 and generate 2000000 at a time
+  let i = 8000000;
+  const writing = () => {
+    const canWrite = true;
 
-// const startWritingRooms = (writeStream, encoding, done) => {
-//   let i = 7500000;
-//   const writing = () => {
-//     const canWrite = true;
+    do {
+      i += 1;
+      if (i === 8500000 || i === 9500000) {
+        console.log(`created ${i}-rooms`);
+      }
+      const room = createPhotosByRoomId(i);
+      // check if i === lines so we would write and call done
+      if (i === lines) {
+        // we are done so fire callback
+        console.log('..done!');
+        writeStream.write(room, encoding, done);
+      } else {
+        // not done, keep writing
+        writeStream.write(room, encoding);
+      }
+      // else call write and continue looping
+    } while (i < lines && canWrite);
+    if (i < lines && !canWrite) {
+      // our buffer for streamUsers filled and need to wait for drain
+      // Write some more once it drains.
+      writeStream.once('drain', writing);
+    }
+  };
+  writing();
+};
 
-//     do {
-//       i += 1;
-//       if (i === 8000000 || i === 9000000) {
-//         console.log(`created ${i}-rooms`);
-//       }
-//       const room = createRooms(i);
-//       // check if i === lines so we would write and call done
-//       if (i === lines) {
-//         // we are done so fire callback
-//         console.log('..done!');
-//         writeStream.write(room, encoding, done);
-//       } else {
-//         // not done, keep writing
-//         writeStream.write(room, encoding);
-//       }
-//       // else call write and continue looping
-//     } while (i < lines && canWrite);
-//     if (i < lines && !canWrite) {
-//       // our buffer for streamUsers filled and need to wait for drain
-//       // Write some more once it drains.
-//       writeStream.once('drain', writing);
-//     }
-//   };
-//   writing();
-// };
-
-// // write out header line before invoking the loop
-// streamRooms.write(`id,owner_id,title,rating,reviews_num,is_superhost,address,is_saved,list_name\n`, 'utf-8');
-// // invoke startWritingUsers and pass callback
-// startWritingRooms(streamRooms, 'utf-8', () => {
-//   streamRooms.end();
-// });
+// write out header line before invoking the loop
+streamPhotos.write(`room_id,owner_id,room_title,room_rating,reviews,superhost,address,saved_to_list,list_name,photo_id,url,description\n`, 'utf-8');
+// invoke startWritingUsers and pass callback
+startWritingRooms(streamPhotos, 'utf-8', () => {
+  streamPhotos.end();
+});
