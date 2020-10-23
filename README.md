@@ -46,8 +46,8 @@ Returns: JSON:
 }
 
 2. Add photo
-POST: '/api/rooms/:roomId/photo'
-Path parameters: roomId
+POST: '/api/rooms/photo/:photoId'
+Path parameters: photoId
 Request body:
 {
   "imageUrl": string,
