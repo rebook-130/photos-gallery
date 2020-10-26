@@ -28,3 +28,4 @@ CSV/
 data
 public/bundle.js
 *.csv
+newrelic.js

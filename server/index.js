@@ -1,4 +1,6 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-console */
+const newrelic = require('newrelic');
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
@@ -23,7 +25,7 @@ app.post('/api/rooms/:roomId/photo', (req, res) => {
 });
 
 // DELETE a photo
-app.delete('/api/rooms/photo/:photoId', (req, res) => {
+app.delete('/api/rooms/photos/:photoId', (req, res) => {
   controllers.deletePhoto(req, res);
 });
 
