@@ -9,12 +9,12 @@ const faker = require('faker');
 const argv = require('yargs').argv;
 
 const lines = argv.lines || 10000000;
-const filenameUsers = argv.output || './CSV/users.csv';
-const streamUsers = fs.createWriteStream(filenameUsers, { autoClose: true });
+// const filenameUsers = argv.output || './CSV/users.csv';
+// const streamUsers = fs.createWriteStream(filenameUsers, { autoClose: true });
 // const filenameRooms = argv.output || './CSV/rooms4.csv';
 // const streamRooms = fs.createWriteStream(filenameRooms, { autoClose: true });
-// const filenamePhotos = argv.output || './CSV/photos5.csv';
-// const streamPhotos = fs.createWriteStream(filenamePhotos);
+const filenamePhotos = argv.output || './CSV/photos5.csv';
+const streamPhotos = fs.createWriteStream(filenamePhotos);
 
 // ==========================DATA GENERATION ========================
 const template = {
@@ -67,19 +67,11 @@ const startWritingUsers = (writeStream, encoding) => {
   console.log('done with users');
 };
 
-// write out header line before invoking the loop
-streamUsers.write(`id,name\n`, 'utf-8');
-startWritingUsers(streamUsers, 'utf-8');
+// // write out header line before invoking the loop
+// streamUsers.write(`id,name\n`, 'utf-8');
+// startWritingUsers(streamUsers, 'utf-8');
 
 // ******************** ROOMS ************************
-// const startWritingRooms = (writeStream, encoding) => {
-//   const rooms = createRooms(5000000, 7500000);
-//   writeStream.write(rooms, encoding);
-// };
-
-// streamRooms.write(`owner_id,title,rating,reviews_num,is_superhost,address,is_saved,list_name\n`, 'utf-8');
-// startWritingRooms(streamRooms, 'utf-8');
-
 const startWritingRooms = (writeStream, encoding, done) => {
   let i = 7500000;
   const writing = () => {
@@ -87,7 +79,7 @@ const startWritingRooms = (writeStream, encoding, done) => {
 
     do {
       i += 1;
-      if (i === 8000000 || i === 9000000) {
+      if (i === 8500000 || i === 9500000) {
         console.log(`created ${i}-rooms`);
       }
       const room = createRooms(i);
@@ -151,9 +143,9 @@ const startWritingPhotos = (writeStream, encoding, done) => {
   writing();
 };
 
-// // write out header line before invoking the loop
-// streamPhotos.write(`room_id,image_url,description\n`, 'utf-8');
-// // invoke startWritingUsers and pass callback
-// startWritingPhotos(streamPhotos, 'utf-8', () => {
-//   streamPhotos.end();
-// });
+// write out header line before invoking the loop
+streamPhotos.write(`room_id,image_url,description\n`, 'utf-8');
+// invoke startWritingUsers and pass callback
+startWritingPhotos(streamPhotos, 'utf-8', () => {
+  streamPhotos.end();
+});
