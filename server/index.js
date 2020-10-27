@@ -12,7 +12,8 @@ const port = 3001;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use('/', express.static(path.join(__dirname, '/../public')));
+// this must be changed for proxy to work
+app.use('/rooms/:roomId', express.static(path.join(__dirname, '/../public')));
 
 // GET room info + photos
 app.get('/api/rooms/:roomId/photos', (req, res) => {
