@@ -8,11 +8,10 @@ import { sleep } from 'k6';
 
 export const options = {
   stages: [
-    { duration: '30s', target: 50 },
-    { duration: '1m', target: 100 },
-    { duration: '30s', target: 150 },
-    { duration: '90s', target: 200 },
-    { duration: '30s', target: 0 },
+    { duration: '10s', target: 50 },
+    { duration: '10s', target: 100 },
+    { duration: '30s', target: 500 },
+    { duration: '30s', target: 1000 },
   ],
   ext: {
     loadimpact: {
@@ -23,9 +22,9 @@ export const options = {
   },
 };
 export default function main() {
-  const roomId = Math.floor(Math.random() * (10000001 - 1) + 1);
+  const roomId = Math.floor(Math.random() * (10000001 - 9000000) + 9000000);
   let response;
   response = http.get(`http://localhost:3001/api/rooms/${roomId}/photos`);
   // Automatically added sleep
-  sleep(0.1);
+  sleep(0.25);
 }
