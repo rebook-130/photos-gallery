@@ -31,3 +31,4 @@ data
 public/bundle.js
 *.csv
 newrelic.js
+config.js
