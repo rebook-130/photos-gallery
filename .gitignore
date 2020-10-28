@@ -25,6 +25,9 @@ build/
 dist/
 /CSV
 *.csv
+*.zip
 
 data
 public/bundle.js
+*.csv
+newrelic.js

@@ -1,15 +1,11 @@
-const mongoose = require('mongoose');
+/* eslint-disable no-console */
+const { Client } = require('pg');
 
-// docker ver
-// mongoose.connect('mongodb://database/docker_gallery', { useNewUrlParser: true, useUnifiedTopology: true });
-// development
-mongoose.connect('mongodb://localhost/gallerys', { useNewUrlParser: true, useUnifiedTopology: true });
-mongoose.set('useFindAndModify', false);
+const connectionStr = 'postgres://anna@localhost:5432/gallery';
 
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'db connection error:'));
-db.once('open', () => {
-  console.log('mongoDB connected');
+const client = new Client({
+  connectionString: connectionStr,
 });
+client.connect();
 
-module.exports = db;
+module.exports = client;

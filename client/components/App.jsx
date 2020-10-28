@@ -1,3 +1,5 @@
+/* eslint-disable class-methods-use-this */
+/* eslint-disable no-console */
 import React from 'react';
 import axios from 'axios';
 import Header from './Header.jsx';
@@ -27,23 +29,23 @@ class App extends React.Component {
   }
 
   getPhotoGallery(roomId) {
-    axios.get(`/api/photogallery/${roomId}`)
+    axios.get(`/api/rooms/${roomId}/photos`)
       .then(({ data }) => {
         const imgUrlList = [];
         const descriptionList = [];
-        for (let i = 0; i < data[0].room_photos.length; i += 1) {
-          imgUrlList.push(data[0].room_photos[i].imageUrl);
-          descriptionList.push(data[0].room_photos[i].description);
+        for (let i = 0; i < data.length; i += 1) {
+          imgUrlList.push(data[i].image_url);
+          descriptionList.push(data[i].description);
         }
         const oneListing = {
-          room_id: data[0].room_id,
+          room_id: roomId,
           title: data[0].title,
-          ratings: data[0].ratings,
-          number_of_reviews: data[0].number_of_reviews,
-          isSuperhost: data[0].isSuperhost,
+          ratings: data[0].rating,
+          number_of_reviews: data[0].reviews_num,
+          isSuperhost: data[0].is_superhost,
           address: data[0].address,
-          isSaved: data[0].isSaved,
-          savedName: data[0].savedName,
+          isSaved: data[0].is_saved,
+          savedName: data[0].list_name,
           imageList: imgUrlList,
           imgDescriptionList: descriptionList,
         };
