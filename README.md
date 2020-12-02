@@ -1,6 +1,7 @@
 # Project Description
 
-> Vacation Home Rental Web Application
+> Vacation Home Rental Web Application.
+
 The goal of this project was to build a scalable RESTful API service for a vacation home rental service and optimize to handle web-scale traffic with more than 80M records in a Postgres database. The service was incrementally optimized through database indexing, connection pooling, improving database memory parameters and horizontal scaling to handle a throughput of 2900/sec with an average response time of 204ms. The service was horizontaly scaled to 6 AWS EC2 microservice instances, one NGINX load balancer and a Postgres database instance.
 
 ## Table of Contents
