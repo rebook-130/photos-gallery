@@ -6,6 +6,7 @@ const db = require('../../database');
 exports.getRoomInfo = (req, res) => {
   const room = req.params.roomId;
   const q = `select * from rooms r inner join photos p on r.id = p.room_id where r.id = ${room}`;
+  // const q = `select * from rooms r where r.id = ${room}`;
   db.query(q, (err, data) => {
     if (err) {
       console.log(err.stack);
