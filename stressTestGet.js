@@ -8,10 +8,10 @@ import { sleep } from 'k6';
 
 export const options = {
   stages: [
-    { duration: '10s', target: 50 },
-    { duration: '10s', target: 100 },
-    { duration: '30s', target: 500 },
     { duration: '30s', target: 1000 },
+    // { duration: '10s', target: 100 },
+    // { duration: '30s', target: 500 },
+    // { duration: '30s', target: 1000 },
   ],
   ext: {
     loadimpact: {
@@ -24,7 +24,8 @@ export const options = {
 export default function main() {
   const roomId = Math.floor(Math.random() * (10000001 - 9000000) + 9000000);
   let response;
-  response = http.get(`http://localhost:3001/api/rooms/${roomId}/photos`);
+  response = http.get(`http://54.67.21.33/api/rooms/${roomId}/photos`);
   // Automatically added sleep
   sleep(0.25);
 }
+console.log(new Date().getTime() - start);
