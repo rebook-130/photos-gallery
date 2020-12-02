@@ -12,7 +12,14 @@ The goal of this project was to build a scalable RESTful API service for a vacat
 
 ## API-routes
 
-API Endpoints
+| Request Type | Endpoint                    | Returns                                                                    | Status |
+|--------------|-----------------------------|----------------------------------------------------------------------------|:--------:|
+| GET          | /api/rooms/:roomId/photos   | JSON object containing a particular listing information as well as photos  | 200    |
+| POST         | /api/rooms/photo/:photoId   | Nothing is returned - adds a photo to the given listing                    | 201    |
+| DELETE       | /api/rooms/:roomId/photo    | Nothing is returned - deletes a photo to the given listing                 | 204    |
+| PATCH        | /api/rooms/:roomId/list     | Nothing is returned - updates a listing information if it was added        | 204    |
+|              |                             | to a collection             
+
 
 1. Get room info
 
