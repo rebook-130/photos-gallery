@@ -1,6 +1,6 @@
 # Project Description
 
-> Vacation Home Rental Web Application.
+Vacation Home Rental Web Application.
 
 The goal of this project was to build a scalable RESTful API service for a vacation home rental service and optimize to handle web-scale traffic with more than 80M records in a Postgres database. The service was incrementally optimized through database indexing, connection pooling, improving database memory parameters and horizontal scaling to handle a throughput of 2900/sec with an average response time of 204ms. The service was horizontaly scaled to 6 AWS EC2 microservice instances, one NGINX load balancer and a Postgres database instance.
 
@@ -15,9 +15,13 @@ The goal of this project was to build a scalable RESTful API service for a vacat
 API Endpoints
 
 1. Get room info
+
 GET: '/api/rooms/:roomId/photos'
+
 Path parameters: roomId
+
 Success Status Code: 200
+
 Returns: JSON:
 {
   "id": integer,
@@ -38,33 +42,45 @@ Returns: JSON:
 }
 
 2. Add photo
+
 POST: '/api/rooms/photo/:photoId'
+
 Path parameters: photoId
+
+Success Status Code: 201
+
 Request body:
 {
   "imageUrl": string,
   "description": string
 }
-Success Status Code: 201
 
 3. Delete photo
+
 DELETE: '/api/rooms/:roomId/photo'
+
 Path parameters: roomId
+
+Success Status Code: 204
+
 Request body: {
   "image_id": integer
 }
-Success Status Code: 204
+
 
 4. Update room saved to list info
+
 PATCH: '/api/rooms/:roomId/list'
+
 Path parameters: roomId
+
 Success Status Code: 204
+
 Request Body: Expects JSON with the following keys (include only keys to be updated)
 {
   is_saved: boolean,
   list_name: string
 }
-
 
 
 ## Requirements
@@ -85,7 +101,9 @@ To run server
 npm start
 ```
 
-To render the page: http://localhost:3001/rooms/:roomId
+To render the page
+
+Open `http://localhost:3001/rooms/:roomId`
 
 To seed the database
 ```sh
